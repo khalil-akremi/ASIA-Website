@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { BOARD_MEMBERS } from '../data/constants';
 
 /**
- * BoardGrid - Scattered Polaroid Gallery
+ * BoardGrid - Scattered Polaroid Gallery (Mobile Optimized)
  * "Eparpillé" layout with random rotations and drop animations
  */
 const BoardGrid = () => {
@@ -11,7 +11,7 @@ const BoardGrid = () => {
     -5, 3, -2, 4, -4, 2, -3, 5, -1, 3, -6
   ];
 
-  // Pre-defined offsets for scattered effect
+  // Pre-defined offsets for scattered effect (desktop)
   const offsets = [
     { x: 0, y: 0 },
     { x: 20, y: -10 },
@@ -26,15 +26,21 @@ const BoardGrid = () => {
     { x: -5, y: 30 },
   ];
 
+  // Color accents for each board member
+  const accents = [
+    '#7c3aed', '#2563eb', '#10b981', '#f97316', '#ec4899',
+    '#06b6d4', '#8b5cf6', '#ef4444', '#14b8a6', '#f59e0b', '#6366f1'
+  ];
+
   return (
-    <section className="py-20 px-4 relative overflow-hidden" style={{ background: '#f0f0f5' }}>
+    <section className="py-16 md:py-20 px-4 relative overflow-hidden" style={{ background: '#f0f0f5' }}>
       {/* Dot Grid Background */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)',
           backgroundSize: '20px 20px',
-          opacity: 0.3
+          opacity: 0.15
         }}
       />
 
@@ -45,9 +51,9 @@ const BoardGrid = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <h2 className="pixel-font-lg text-4xl md:text-5xl text-black mb-2">
+          <h2 className="pixel-font-lg text-3xl md:text-5xl text-black mb-2">
             MEET_THE_BOARD
           </h2>
           <pre className="ascii-art text-xs mt-4" style={{ color: '#10b981' }}>
@@ -57,8 +63,61 @@ const BoardGrid = () => {
           </pre>
         </motion.div>
 
-        {/* Polaroid Container */}
-        <div className="relative min-h-[1200px] md:min-h-[900px]">
+        {/* Mobile: Simple Grid Layout */}
+        <div className="md:hidden grid grid-cols-2 gap-3">
+          {BOARD_MEMBERS.map((member, index) => (
+            <motion.div
+              key={member.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              className="bg-white border-2 border-black overflow-hidden"
+              style={{ boxShadow: '3px 3px 0px 0px #000' }}
+            >
+              {/* Photo */}
+              <div className="relative aspect-square overflow-hidden bg-gray-100">
+                <img
+                  src={`/board/${member.image}`}
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'flex';
+                  }}
+                />
+                {/* Fallback */}
+                <div
+                  className="absolute inset-0 hidden items-center justify-center"
+                  style={{ background: `linear-gradient(135deg, ${accents[index]}40, ${accents[index]}20)` }}
+                >
+                  <span className="pixel-font text-4xl" style={{ color: accents[index] }}>
+                    {member.name.charAt(0)}
+                  </span>
+                </div>
+                {/* Number Badge */}
+                <div
+                  className="absolute bottom-1 right-1 px-1.5 py-0.5 border border-black text-xs"
+                  style={{ background: accents[index] }}
+                >
+                  <span className="terminal-font text-white">#{String(index + 1).padStart(2, '0')}</span>
+                </div>
+              </div>
+              {/* Caption */}
+              <div className="p-2 text-center bg-white">
+                <h3 className="pixel-font text-xs text-black truncate">
+                  {member.name.toUpperCase()}
+                </h3>
+                <p className="terminal-font text-xs text-gray-600 truncate">
+                  {member.title}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Desktop: Scattered Polaroid Layout */}
+        <div className="hidden md:block relative" style={{ minHeight: '900px' }}>
           {BOARD_MEMBERS.map((member, index) => (
             <motion.div
               key={member.name}
@@ -80,7 +139,7 @@ const BoardGrid = () => {
                 stiffness: 100,
               }}
               whileHover={{
-                scale: 1.1,
+                scale: 1.15,
                 rotate: 0,
                 zIndex: 100,
               }}
@@ -88,8 +147,7 @@ const BoardGrid = () => {
               style={{
                 left: `${(index % 4) * 25}%`,
                 top: `${Math.floor(index / 4) * 33}%`,
-                transform: `translate(${offsets[index].x}px, ${offsets[index].y}px) rotate(${rotations[index]}deg)`,
-                width: '220px',
+                width: '200px',
                 zIndex: index + 1,
                 '--rotation': `${rotations[index]}deg`,
               }}
@@ -109,17 +167,20 @@ const BoardGrid = () => {
                   />
                   {/* Fallback */}
                   <div
-                    className="absolute inset-0 hidden items-center justify-center bg-gradient-to-br from-purple-200 to-blue-200"
-                    style={{ display: 'none' }}
+                    className="absolute inset-0 hidden items-center justify-center"
+                    style={{ background: `linear-gradient(135deg, ${accents[index]}40, ${accents[index]}20)`, display: 'none' }}
                   >
-                    <span className="pixel-font text-4xl text-purple-600">
+                    <span className="pixel-font text-4xl" style={{ color: accents[index] }}>
                       {member.name.charAt(0)}
                     </span>
                   </div>
 
                   {/* Photo Number */}
-                  <div className="absolute bottom-2 right-2 bg-yellow-400 border-2 border-black px-2 py-1">
-                    <span className="terminal-font text-sm text-black">
+                  <div
+                    className="absolute bottom-2 right-2 px-2 py-1 border-2 border-black"
+                    style={{ background: accents[index] }}
+                  >
+                    <span className="terminal-font text-sm text-white">
                       #{String(index + 1).padStart(2, '0')}
                     </span>
                   </div>
@@ -137,8 +198,8 @@ const BoardGrid = () => {
 
                 {/* Tape Effect */}
                 <div
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 bg-yellow-200 border-2 border-black"
-                  style={{ transform: `rotate(${rotations[index] * -1}deg) translateX(-50%)` }}
+                  className="absolute -top-3 left-1/2 w-16 h-6 bg-yellow-200 border-2 border-black"
+                  style={{ transform: `translateX(-50%) rotate(${rotations[index] * -0.5}deg)` }}
                 />
               </div>
             </motion.div>
@@ -150,7 +211,7 @@ const BoardGrid = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-20 text-center"
+          className="mt-12 md:mt-20 text-center"
         >
           <pre className="ascii-art text-xs" style={{ color: '#7c3aed' }}>
 {`╔═══════════════════════════════════════════════════════════════╗

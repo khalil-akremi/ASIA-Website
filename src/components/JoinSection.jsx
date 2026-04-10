@@ -3,7 +3,7 @@ import { Mail, ArrowRight, Users, Camera, Link2 } from 'lucide-react';
 import { SOCIALS, WETRANSFER_LINK } from '../data/constants';
 
 /**
- * JoinSection - Neo-Brutalist Join Section with ASCII Footer
+ * JoinSection - Neo-Brutalist Join Section with ASCII Footer (Mobile Optimized)
  * Gallery and socials with hard borders and shadows
  */
 const JoinSection = () => {
@@ -22,14 +22,14 @@ const JoinSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 relative overflow-hidden" style={{ background: '#f0f0f5' }}>
+    <section className="py-16 md:py-20 px-4 relative overflow-hidden" style={{ background: '#f0f0f5' }}>
       {/* Dot Grid Background */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)',
           backgroundSize: '20px 20px',
-          opacity: 0.3
+          opacity: 0.15
         }}
       />
 
@@ -40,12 +40,12 @@ const JoinSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-10 md:mb-12"
         >
-          <h2 className="pixel-font-lg text-4xl md:text-5xl text-black mb-2">
+          <h2 className="pixel-font-lg text-3xl md:text-5xl text-black mb-2">
             JOIN_THE_FAMILY
           </h2>
-          <pre className="ascii-art text-xs mt-4" style={{ color: '#f97316' }}>
+          <pre className="ascii-art text-xs mt-3" style={{ color: '#f97316' }}>
 {`╔═══════════════════════════════════════════════╗
 ║   BECOME_PART_OF_THE_COMMUNITY                ║
 ║   LEARN · GROW · BUILD · CONNECT               ║
@@ -53,14 +53,52 @@ const JoinSection = () => {
           </pre>
         </motion.div>
 
-        {/* Gallery Grid - Scattered Polaroids */}
+        {/* Gallery Grid - Mobile First */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-12 md:mb-16"
         >
-          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+          {/* Mobile: 2x2 Grid */}
+          <div className="grid grid-cols-2 gap-3 md:hidden">
+            {galleryImages.map((image, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="relative"
+              >
+                <div className="bg-white p-1.5 pb-6 border-2 border-black" style={{ boxShadow: '4px 4px 0px 0px #000' }}>
+                  <div className="aspect-square overflow-hidden bg-gray-200 border-2 border-black">
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.parentElement.innerHTML = `
+                          <div class="w-full h-full flex items-center justify-center" style="background: linear-gradient(135deg, #7c3aed40, #2563eb40)">
+                            <span class="pixel-font text-2xl text-purple-600">ASIA</span>
+                          </div>
+                        `;
+                      }}
+                    />
+                  </div>
+                  <div className="mt-1.5 text-center">
+                    <span className="terminal-font text-xs text-gray-600">
+                      #{String(index + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Desktop: Scattered Polaroids */}
+          <div className="hidden md:flex flex-wrap justify-center gap-6 md:gap-8">
             {galleryImages.map((image, index) => (
               <motion.div
                 key={index}
@@ -117,7 +155,7 @@ const JoinSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
           <a
             href={WETRANSFER_LINK}
@@ -128,11 +166,11 @@ const JoinSection = () => {
             <motion.button
               whileHover={{ scale: 1.02, x: 2, y: 2 }}
               whileTap={{ scale: 0.98, x: 5, y: 5 }}
-              className="brutal-btn bg-purple-600 text-white px-10 py-5"
+              className="brutal-btn bg-purple-600 text-white px-6 py-4 md:px-10 md:py-5"
             >
-              <span className="flex items-center gap-3">
+              <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base">
                 {'>'} DOWNLOAD_RESOURCES
-                <ArrowRight size={20} />
+                <ArrowRight size={18} />
               </span>
             </motion.button>
           </a>
@@ -144,13 +182,36 @@ const JoinSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mb-12"
+          className="text-center mb-10 md:mb-12"
         >
-          <h3 className="pixel-font text-xl text-black mb-6">
+          <h3 className="pixel-font text-lg md:text-xl text-black mb-4 md:mb-6">
             CONNECT_WITH_US
           </h3>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          {/* Mobile: 2x2 Grid */}
+          <div className="grid grid-cols-2 gap-3 px-4 md:hidden">
+            {socialLinks.map((social, index) => (
+              <motion.a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                className="bg-white border-2 border-black flex items-center justify-center gap-2 px-3 py-3"
+                style={{ boxShadow: '3px 3px 0px 0px #000' }}
+              >
+                <social.icon size={18} className="text-purple-600" />
+                <span className="terminal-font text-sm text-black">{social.name}</span>
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Desktop: Flex Row */}
+          <div className="hidden md:flex flex-wrap justify-center gap-4">
             {socialLinks.map((social, index) => (
               <motion.a
                 key={social.name}
@@ -177,9 +238,9 @@ const JoinSection = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-16"
+          className="mt-10 md:mt-16"
         >
-          <pre className="ascii-art text-xs md:text-sm" style={{ color: '#7c3aed' }}>
+          <pre className="ascii-art text-xs md:text-sm hidden md:block" style={{ color: '#7c3aed' }}>
 {`
     ██████╗  █████╗ ███████╗ █████╗ ██████╗  █████╗
    ██╔════╝ ██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗
@@ -199,6 +260,20 @@ const JoinSection = () => {
    └────────────────────────────────────────────────────┘
 `}
           </pre>
+          {/* Mobile simplified footer */}
+          <div className="md:hidden text-center">
+            <pre className="ascii-art text-xs" style={{ color: '#7c3aed' }}>
+{`   ██████╗  █████╗ ███████╗ █████╗ ██████╗  █████╗
+   ██╔════╝ ██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗
+   ██║      ███████║███████╗███████║██████╔╝███████║
+   ██║      ██╔══██║╚════██║██╔══██║██╔══██╗██╔══██║
+   ╚██████╗ ██║  ██║███████║██║  ██║██║  ██║██║  ██║
+    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝`}
+            </pre>
+            <p className="terminal-font text-xs mt-4 text-gray-600">
+              © {new Date().getFullYear()} ASIA - All Rights Reserved
+            </p>
+          </div>
         </motion.div>
 
         {/* Footer Links */}
@@ -206,14 +281,14 @@ const JoinSection = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-8 text-center"
+          className="mt-6 md:mt-8 text-center"
         >
-          <div className="terminal-font text-sm text-gray-600">
+          <div className="terminal-font text-xs md:text-sm text-gray-600">
             <span>VERSION_2.0</span>
-            <span className="mx-4">|</span>
-            <span>NEO_BRUTALIST_EDITION</span>
-            <span className="mx-4">|</span>
-            <span>CYBER_TERMINAL_UI</span>
+            <span className="mx-2 md:mx-4 hidden sm:inline">|</span>
+            <span className="hidden sm:inline">NEO_BRUTALIST_EDITION</span>
+            <span className="mx-2 md:mx-4 hidden sm:inline">|</span>
+            <span className="hidden sm:inline">CYBER_TERMINAL_UI</span>
           </div>
         </motion.div>
       </div>

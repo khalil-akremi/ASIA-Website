@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /**
- * HeroPanel - Neo-Brutalist Hero with Staggered Typewriter
+ * HeroPanel - Neo-Brutalist Hero with Staggered Typewriter (Mobile Optimized)
  * Features Matrix-style ASCII rain background
  */
 const HeroPanel = () => {
@@ -42,19 +42,22 @@ const HeroPanel = () => {
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
+    const resizeCanvas = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    resizeCanvas();
 
     const chars = 'ASIA01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
     const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = Array(Math.floor(columns)).fill(1);
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(1);
 
     const draw = () => {
       ctx.fillStyle = 'rgba(240, 240, 245, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = 'rgba(124, 58, 237, 0.15)';
+      ctx.fillStyle = 'rgba(124, 58, 237, 0.12)';
       ctx.font = `${fontSize}px VT323`;
 
       for (let i = 0; i < drops.length; i++) {
@@ -78,16 +81,16 @@ const HeroPanel = () => {
       <canvas
         ref={matrixRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ opacity: 0.6 }}
+        style={{ opacity: 0.5 }}
       />
 
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 pt-20">
-        {/* ASCII Logo */}
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 pt-16 md:pt-20">
+        {/* ASCII Logo - Hidden on mobile */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mb-8"
+          className="mb-4 md:mb-8 hidden md:block"
         >
           <pre className="ascii-art text-xs md:text-sm" style={{ color: '#7c3aed' }}>
 {`
@@ -100,16 +103,26 @@ const HeroPanel = () => {
           </pre>
         </motion.div>
 
+        {/* Mobile Logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="mb-4 md:hidden"
+        >
+          <h1 className="pixel-font-lg text-5xl text-black">ASIA</h1>
+        </motion.div>
+
         {/* Main Hero Content */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center"
+          className="text-center px-2"
         >
           {/* "ASIA IS..." Header */}
-          <div className="mb-4">
-            <h1 className="pixel-font-lg text-5xl md:text-7xl lg:text-8xl text-black">
+          <div className="mb-2 md:mb-4">
+            <h1 className="pixel-font-lg text-4xl md:text-7xl lg:text-8xl text-black">
               ASIA IS...
             </h1>
           </div>
@@ -119,72 +132,28 @@ const HeroPanel = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="pixel-font text-2xl md:text-3xl mb-4 text-black"
+            className="pixel-font text-xl md:text-3xl mb-3 md:mb-4 text-black"
           >
             A PLACE TO
           </motion.p>
 
-          {/* Staggered Words */}
-          <div className="pixel-font-lg text-4xl md:text-5xl lg:text-6xl min-h-[60px] flex flex-wrap justify-center items-center gap-x-4">
-            {/* CONNECT - Purple */}
-            <AnimatePresence>
-              {currentWordIndex >= 1 && (
-                <motion.span
-                  initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.4, type: 'spring' }}
-                  style={{ color: words[0].color }}
-                  className="glitch-text"
-                >
-                  {words[0].text}
-                </motion.span>
-              )}
-            </AnimatePresence>
-
-            {/* LEARN - Green */}
-            <AnimatePresence>
-              {currentWordIndex >= 2 && (
-                <motion.span
-                  initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.4, type: 'spring' }}
-                  style={{ color: words[1].color }}
-                  className="glitch-text"
-                >
-                  {words[1].text}
-                </motion.span>
-              )}
-            </AnimatePresence>
-
-            {/* COMMUNICATE - Blue */}
-            <AnimatePresence>
-              {currentWordIndex >= 3 && (
-                <motion.span
-                  initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.4, type: 'spring' }}
-                  style={{ color: words[2].color }}
-                  className="glitch-text"
-                >
-                  {words[2].text}
-                </motion.span>
-              )}
-            </AnimatePresence>
-
-            {/* BUILD - Orange */}
-            <AnimatePresence>
-              {currentWordIndex >= 4 && (
-                <motion.span
-                  initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.4, type: 'spring' }}
-                  style={{ color: words[3].color }}
-                  className="glitch-text"
-                >
-                  {words[3].text}
-                </motion.span>
-              )}
-            </AnimatePresence>
+          {/* Staggered Words - Mobile Responsive */}
+          <div className="pixel-font-lg text-3xl md:text-5xl lg:text-6xl min-h-[50px] md:min-h-[60px] flex flex-wrap justify-center items-center gap-x-2 md:gap-x-4">
+            {words.map((word, index) => (
+              <AnimatePresence key={word.text}>
+                {currentWordIndex >= index + 1 && (
+                  <motion.span
+                    initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.4, type: 'spring' }}
+                    style={{ color: word.color }}
+                    className="glitch-text"
+                  >
+                    {word.text}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            ))}
 
             {/* Typing Cursor */}
             <span
@@ -205,45 +174,45 @@ const HeroPanel = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="mt-12 w-full max-w-md"
+          className="mt-8 md:mt-12 w-full max-w-sm md:max-w-md px-2"
         >
           <div className="terminal-window">
             {/* Terminal Header */}
-            <div className="terminal-header px-4 py-2 flex items-center gap-2">
+            <div className="terminal-header px-3 md:px-4 py-2 flex items-center gap-2">
               <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-red-500 border border-black" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500 border border-black" />
-                <div className="w-3 h-3 rounded-full bg-green-500 border border-black" />
+                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-500 border border-black" />
+                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-500 border border-black" />
+                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500 border border-black" />
               </div>
-              <span className="terminal-font text-sm text-purple-400 ml-2">
+              <span className="terminal-font text-xs md:text-sm text-purple-400 ml-2 truncate">
                 ~/asia/connect.exe
               </span>
             </div>
 
             {/* Terminal Body */}
-            <div className="p-6">
-              <div className="space-y-4">
+            <div className="p-4 md:p-6">
+              <div className="space-y-3 md:space-y-4">
                 {/* Email Input */}
                 <div>
-                  <label className="terminal-font text-purple-400 text-sm block mb-1">
+                  <label className="terminal-font text-purple-400 text-xs md:text-sm block mb-1">
                     {'>'} ENTER_EMAIL:
                   </label>
                   <input
                     type="email"
                     placeholder="your@email.com"
-                    className="w-full px-3 py-2 bg-black border-2 border-purple-500 text-white terminal-font focus:outline-none focus:border-purple-400"
+                    className="w-full px-3 py-2 bg-black border-2 border-purple-500 text-white terminal-font text-sm focus:outline-none focus:border-purple-400"
                   />
                 </div>
 
                 {/* Password Input */}
                 <div>
-                  <label className="terminal-font text-purple-400 text-sm block mb-1">
+                  <label className="terminal-font text-purple-400 text-xs md:text-sm block mb-1">
                     {'>'} ENTER_PASSWORD:
                   </label>
                   <input
                     type="password"
                     placeholder="********"
-                    className="w-full px-3 py-2 bg-black border-2 border-purple-500 text-white terminal-font focus:outline-none focus:border-purple-400"
+                    className="w-full px-3 py-2 bg-black border-2 border-purple-500 text-white terminal-font text-sm focus:outline-none focus:border-purple-400"
                   />
                 </div>
 
@@ -251,7 +220,7 @@ const HeroPanel = () => {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-3 brutal-btn bg-purple-600 text-white pixel-font"
+                  className="w-full py-3 brutal-btn bg-purple-600 text-white pixel-font text-sm md:text-base"
                 >
                   {'>'} JOIN_THE_FAMILY
                 </motion.button>
@@ -270,9 +239,9 @@ const HeroPanel = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2"
         >
-          <div className="terminal-font text-sm text-black flex flex-col items-center">
+          <div className="terminal-font text-xs md:text-sm text-black flex flex-col items-center">
             <span>SCROLL_DOWN</span>
             <motion.div
               animate={{ y: [0, 5, 0] }}

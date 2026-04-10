@@ -31,6 +31,23 @@ body {
   background-color: #f0f0f5;
   color: #000000;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mobile Touch Improvements */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    touch-action: pan-y;
+  }
 }
 
 /* Dot-Grid Matrix Background */
@@ -77,6 +94,20 @@ body {
   box-shadow: 0px 0px 0px 0px #000000;
 }
 
+/* Mobile Button Adjustments */
+@media (max-width: 768px) {
+  .brutal-btn {
+    border-width: 2px;
+    box-shadow: 4px 4px 0px 0px #000000;
+    letter-spacing: 1px;
+  }
+
+  .brutal-btn:hover {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0px 0px #000000;
+  }
+}
+
 /* Pixel Font Classes */
 .pixel-font {
   font-family: "VT323", monospace;
@@ -105,7 +136,7 @@ body {
 .bg-accent-green { background-color: #10b981; }
 .bg-accent-orange { background-color: #f97316; }
 
-/* Gradient Text - Still used for some accents */
+/* Gradient Text */
 .gradient-text {
   background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
   -webkit-background-clip: text;
@@ -178,6 +209,15 @@ body {
   z-index: 100 !important;
 }
 
+/* Mobile Polaroid */
+@media (max-width: 768px) {
+  .polaroid {
+    border-width: 2px;
+    box-shadow: 4px 4px 0px 0px #000000;
+    padding: 8px 8px 30px 8px;
+  }
+}
+
 /* Glitch Effect */
 @keyframes glitch {
   0%, 100% { transform: translate(0); }
@@ -191,22 +231,6 @@ body {
   animation: glitch 0.3s ease;
 }
 
-/* Drop Animation for Polaroids */
-@keyframes dropIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-100px) rotate(0deg);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(20px) rotate(var(--rotation));
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) rotate(var(--rotation));
-  }
-}
-
 /* ASCII Block */
 .ascii-art {
   font-family: "VT323", monospace;
@@ -217,11 +241,25 @@ body {
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  .ascii-art {
+    font-size: 8px;
+    line-height: 1.1;
+  }
+}
+
 /* Terminal Window */
 .terminal-window {
   background: #0a0a0a;
-  border: 3px solid #7c3aed;
-  box-shadow: 8px 8px 0px 0px #000000;
+  border: 2px solid #7c3aed;
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+@media (max-width: 768px) {
+  .terminal-window {
+    border-width: 2px;
+    box-shadow: 4px 4px 0px 0px #000000;
+  }
 }
 
 .terminal-header {
@@ -229,9 +267,45 @@ body {
   border-bottom: 2px solid #7c3aed;
 }
 
+/* 3D Isometric Window Styles */
+.isometric-container {
+  perspective: 2000px;
+  perspective-origin: 50% 30%;
+}
+
+.isometric-stack {
+  transform-style: preserve-3d;
+  transform: rotateX(15deg) rotateY(-10deg);
+}
+
+.isometric-window {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.isometric-window:hover {
+  transform: translateZ(80px) scale(1.08);
+}
+
+/* Floating Animation for Mascots */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+.floating-mascot {
+  animation: float 4s ease-in-out infinite;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 12px;
+}
+
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
 }
 
 ::-webkit-scrollbar-track {
@@ -252,4 +326,47 @@ body {
 ::selection {
   background: #7c3aed;
   color: #ffffff;
+}
+
+/* Responsive Border Utilities */
+@media (max-width: 768px) {
+  .border-3 {
+    border-width: 2px;
+  }
+
+  .shadow-brutal {
+    box-shadow: 4px 4px 0px 0px #000000;
+  }
+}
+
+/* Safe Area for Mobile */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Touch-friendly Focus States */
+@media (hover: none) {
+  button:focus,
+  a:focus,
+  input:focus {
+    outline: 3px solid #7c3aed;
+    outline-offset: 2px;
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+@media (max-width: 768px) {
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  section {
+    overflow-x: hidden;
+  }
 }

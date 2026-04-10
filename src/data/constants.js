@@ -66,3 +66,11 @@ export const STATS = {
   poles: 6,
   mission: 1,
 };
+
+// Mascot Images (for random placement across site)
+export const MASCOT_IMAGES = [
+  "Gemini_Generated_Image_nbq627nbq627nbq6 (1).png",
+  "Gemini_Generated_Image_18yc7w18yc7w18yc.png",
+  "Gemini_Generated_Image_ly5y1aly5y1aly5y.png",
+  "Gemini_Generated_Image_d7gq57d7gq57d7gq.png",
+];
