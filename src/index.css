@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+/* Custom Theme - Neo-Brutalist / Cyber-Terminal */
+@theme {
+  --font-pixel: "VT323", monospace;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Neo-Brutalist Colors */
+  --color-brutal-bg: #f0f0f5;
+  --color-brutal-purple: #7c3aed;
+  --color-brutal-blue: #2563eb;
+  --color-brutal-green: #10b981;
+  --color-brutal-orange: #f97316;
+  --color-brutal-black: #000000;
+  --color-brutal-white: #ffffff;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background-color: #f0f0f5;
+  color: #000000;
+  overflow-x: hidden;
+}
+
+/* Dot-Grid Matrix Background */
+.dot-grid-bg {
+  background-color: #f0f0f5;
+  background-image:
+    radial-gradient(circle, #000 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Brutal Border */
+.brutal-border {
+  border: 3px solid #000000;
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+.brutal-border-sm {
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+
+.brutal-border-thin {
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0px 0px #000000;
+}
+
+/* Brutal Button */
+.brutal-btn {
+  border: 3px solid #000000;
+  box-shadow: 5px 5px 0px 0px #000000;
+  transition: all 0.1s ease;
+  font-family: "VT323", monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.brutal-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0px 0px #000000;
+}
+
+.brutal-btn:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0px 0px 0px 0px #000000;
+}
+
+/* Pixel Font Classes */
+.pixel-font {
+  font-family: "VT323", monospace;
+  letter-spacing: 1px;
+}
+
+.pixel-font-lg {
+  font-family: "VT323", monospace;
+  letter-spacing: 2px;
+}
+
+/* Terminal Font */
+.terminal-font {
+  font-family: "VT323", monospace;
+  letter-spacing: 1px;
+}
+
+/* Color Accents */
+.text-accent-purple { color: #7c3aed; }
+.text-accent-blue { color: #2563eb; }
+.text-accent-green { color: #10b981; }
+.text-accent-orange { color: #f97316; }
+
+.bg-accent-purple { background-color: #7c3aed; }
+.bg-accent-blue { background-color: #2563eb; }
+.bg-accent-green { background-color: #10b981; }
+.bg-accent-orange { background-color: #f97316; }
+
+/* Gradient Text - Still used for some accents */
+.gradient-text {
+  background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Matrix Rain Background */
+.matrix-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.matrix-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(124, 58, 237, 0.03) 2px,
+      rgba(124, 58, 237, 0.03) 4px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Scanning Line Animation */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.scanline-effect::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.4), transparent);
+  animation: scanline 3s linear infinite;
+  pointer-events: none;
+}
+
+/* Typewriter Cursor */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.typewriter-cursor::after {
+  content: "█";
+  animation: blink 0.8s infinite;
+  margin-left: 2px;
+}
+
+/* Polaroid Styles */
+.polaroid {
+  background: #ffffff;
+  border: 3px solid #000000;
+  box-shadow: 6px 6px 0px 0px #000000;
+  padding: 10px 10px 40px 10px;
+  transition: all 0.3s ease;
+}
+
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  z-index: 100 !important;
+}
+
+/* Glitch Effect */
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+.glitch-text:hover {
+  animation: glitch 0.3s ease;
+}
+
+/* Drop Animation for Polaroids */
+@keyframes dropIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px) rotate(0deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(20px) rotate(var(--rotation));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--rotation));
+  }
+}
+
+/* ASCII Block */
+.ascii-art {
+  font-family: "VT323", monospace;
+  font-size: 10px;
+  line-height: 1;
+  color: #7c3aed;
+  white-space: pre;
+  text-align: center;
+}
+
+/* Terminal Window */
+.terminal-window {
+  background: #0a0a0a;
+  border: 3px solid #7c3aed;
+  box-shadow: 8px 8px 0px 0px #000000;
+}
+
+.terminal-header {
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  border-bottom: 2px solid #7c3aed;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f5;
+  border-left: 2px solid #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7c3aed;
+  border: 2px solid #000000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6d28d9;
+}
+
+/* Selection */
+::selection {
+  background: #7c3aed;
+  color: #ffffff;
+}
