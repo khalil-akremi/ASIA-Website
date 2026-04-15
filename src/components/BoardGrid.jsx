@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import { BOARD_MEMBERS } from '../data/constants';
 
 /**
- * BoardGrid - Scattered Polaroid Gallery (Mobile Optimized)
- * "Eparpillé" layout with random rotations and drop animations
+ * BoardGrid - Neo-Brutalist High-Tech Board Gallery
+ * Clean typography with floating card design
  */
 const BoardGrid = () => {
   // Pre-defined random rotations for each member (consistent across renders)
@@ -26,10 +26,10 @@ const BoardGrid = () => {
     { x: -5, y: 30 },
   ];
 
-  // Color accents for each board member
+  // Color accents with strict hierarchy: Violet=Action, Cyan=Data, Pink=Alert
   const accents = [
-    '#7c3aed', '#2563eb', '#10b981', '#f97316', '#ec4899',
-    '#06b6d4', '#8b5cf6', '#ef4444', '#14b8a6', '#f59e0b', '#6366f1'
+    '#7c3aed', '#06b6d4', '#db2777', '#1e3a8a', '#ec4899',
+    '#7c3aed', '#06b6d4', '#db2777', '#1e3a8a', '#ec4899', '#7c3aed'
   ];
 
   return (
@@ -53,14 +53,15 @@ const BoardGrid = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="pixel-font-lg text-3xl md:text-5xl text-black mb-2">
-            MEET_THE_BOARD
-          </h2>
-          <pre className="ascii-art text-xs mt-4" style={{ color: '#10b981' }}>
-{`┌──────────────────────────────────────┐
-│  ★ SCATTERED_POLAROID_GALLERY ★   │
-└──────────────────────────────────────┘`}
-          </pre>
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <span className="terminal-font text-xs text-gray-500">TEAM://</span>
+            <h2 className="pixel-font-lg text-3xl md:text-5xl text-black">BOARD</h2>
+          </div>
+          <div className="terminal-font text-sm text-gray-600">
+            <span style={{ color: '#7c3aed' }}>●</span> SCATTERED_POLAROID_GALLERY
+            <span className="mx-2" style={{ color: '#06b6d4' }}>|</span>
+            STATUS: <span style={{ color: '#10b981' }}>LOADED</span>
+          </div>
         </motion.div>
 
         {/* Mobile: Simple Grid Layout */}
@@ -72,8 +73,12 @@ const BoardGrid = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="bg-white border-2 border-black overflow-hidden"
-              style={{ boxShadow: '3px 3px 0px 0px #000' }}
+              className="bg-white overflow-hidden"
+              style={{
+                borderWidth: '0.5px',
+                borderColor: '#000',
+                boxShadow: '3px 3px 0px 0px #000',
+              }}
             >
               {/* Photo */}
               <div className="relative aspect-square overflow-hidden bg-gray-100">
@@ -97,10 +102,10 @@ const BoardGrid = () => {
                 </div>
                 {/* Number Badge */}
                 <div
-                  className="absolute bottom-1 right-1 px-1.5 py-0.5 border border-black text-xs"
-                  style={{ background: accents[index] }}
+                  className="absolute bottom-1 right-1 px-1.5 py-0.5 terminal-font text-xs text-white"
+                  style={{ background: accents[index], borderWidth: '0.5px', borderColor: 'rgba(255,255,255,0.3)' }}
                 >
-                  <span className="terminal-font text-white">#{String(index + 1).padStart(2, '0')}</span>
+                  #{String(index + 1).padStart(2, '0')}
                 </div>
               </div>
               {/* Caption */}
@@ -206,18 +211,18 @@ const BoardGrid = () => {
           ))}
         </div>
 
-        {/* ASCII Footer */}
+        {/* Footer */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="mt-12 md:mt-20 text-center"
         >
-          <pre className="ascii-art text-xs" style={{ color: '#7c3aed' }}>
-{`╔═══════════════════════════════════════════════════════════════╗
-║   ▓▓▓  END_OF_BOARD_GALLERY  ▓▓▓                              ║
-╚═══════════════════════════════════════════════════════════════╝`}
-          </pre>
+          <div className="terminal-font text-sm text-gray-600">
+            <span style={{ color: '#7c3aed' }}>SYS:</span> BOARD_LOADED
+            <span className="mx-2">|</span>
+            <span style={{ color: '#06b6d4' }}>MEMBERS:</span> {BOARD_MEMBERS.length}
+          </div>
         </motion.div>
       </div>
     </section>

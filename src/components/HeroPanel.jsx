@@ -1,21 +1,22 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { JOIN_LINK } from '../data/constants';
 
 /**
- * HeroPanel - Neo-Brutalist Hero with Staggered Typewriter (Mobile Optimized)
- * Features Matrix-style ASCII rain background
+ * HeroPanel - Neo-Brutalist High-Tech Hero with CRT Aesthetics
+ * Features Matrix-style ASCII rain background with enhanced ASCII logo
  */
 const HeroPanel = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
   const matrixRef = useRef(null);
 
-  // Words to reveal with colors
+  // Words with strict color hierarchy: Violet=Action, Cyan=Data, Pink=Alert
   const words = [
-    { text: 'CONNECT', color: '#7c3aed' },  // Purple
-    { text: 'LEARN', color: '#10b981' },     // Green
-    { text: 'COMMUNICATE', color: '#2563eb' }, // Blue
-    { text: 'BUILD', color: '#f97316' },     // Orange
+    { text: 'CONNECT', color: '#7c3aed', type: 'action' },   // Violet - Action
+    { text: 'LEARN', color: '#db2777', type: 'alert' },      // Pink - Alert
+    { text: 'COMMUNICATE', color: '#06b6d4', type: 'data' }, // Cyan - Data
+    { text: 'BUILD', color: '#1e3a8a', type: 'action' },     // Dark Blue - Action
   ];
 
   // Staggered reveal effect
@@ -84,33 +85,81 @@ const HeroPanel = () => {
         style={{ opacity: 0.5 }}
       />
 
+      {/* CRT Scanline Overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none z-20"
+        style={{
+          background: 'repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0.03) 2px)',
+        }}
+      />
+
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 pt-16 md:pt-20">
-        {/* ASCII Logo - Hidden on mobile */}
+        {/* ASCII Logo - Large with CRT Glow - Desktop */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mb-4 md:mb-8 hidden md:block"
+          className="mb-6 md:mb-10 hidden md:block"
         >
-          <pre className="ascii-art text-xs md:text-sm" style={{ color: '#7c3aed' }}>
-{`
-    ___   _____  ____  _____
-   /   | / ___/ / __ \\/ ___/
-  / /| | \\__ \\ / /_/ /\\__ \\
- / ___ |___/ // ____/___/ /
-/_/  |_/____//_/    /____/
-`}
-          </pre>
+          <div className="relative">
+            {/* Glow Layer */}
+            <pre
+              className="absolute inset-0 font-mono text-lg md:text-xl lg:text-2xl select-none"
+              style={{
+                color: '#7c3aed',
+                textShadow: '0 0 20px rgba(124, 58, 237, 0.8), 0 0 40px rgba(124, 58, 237, 0.5), 0 0 60px rgba(124, 58, 237, 0.3)',
+                transform: 'translate(2px, 2px)',
+                opacity: 0.7,
+                letterSpacing: '0.15em',
+                lineHeight: '1.1',
+              }}
+            >
+{`    █████╗  ██████╗ ██████╗ ███████╗
+   ██╔══██╗██╔════╝██╔════╝ ██╔════╝
+   ███████║██║     ██║     █████╗
+   ██╔══██║██║     ██║     ██╔══╝
+   ██║  ██║╚██████╗╚██████╗███████╗
+   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚══════╝`}
+            </pre>
+            {/* Main ASCII */}
+            <pre
+              className="relative font-mono text-lg md:text-xl lg:text-2xl"
+              style={{
+                color: '#7c3aed',
+                textShadow: '0 0 10px rgba(124, 58, 237, 0.6), 0 0 20px rgba(124, 58, 237, 0.4)',
+                letterSpacing: '0.15em',
+                lineHeight: '1.1',
+              }}
+            >
+{`    █████╗  ██████╗ ██████╗ ███████╗
+   ██╔══██╗██╔════╝██╔════╝ ██╔════╝
+   ███████║██║     ██║     █████╗
+   ██╔══██║██║     ██║     ██╔══╝
+   ██║  ██║╚██████╗╚██████╗███████╗
+   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚══════╝`}
+            </pre>
+          </div>
         </motion.div>
 
-        {/* Mobile Logo */}
+        {/* ASCII Logo - Mobile */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
           className="mb-4 md:hidden"
         >
-          <h1 className="pixel-font-lg text-5xl text-black">ASIA</h1>
+          <pre
+            className="font-mono text-sm"
+            style={{
+              color: '#7c3aed',
+              textShadow: '0 0 10px rgba(124, 58, 237, 0.6)',
+              letterSpacing: '0.1em',
+            }}
+          >
+{`█████╗ ██████╗
+╚════╝ ╚═════╝`}
+          </pre>
+          <h1 className="pixel-font-lg text-3xl text-black mt-2">ASIA</h1>
         </motion.div>
 
         {/* Main Hero Content */}
@@ -146,7 +195,10 @@ const HeroPanel = () => {
                     initial={{ opacity: 0, y: 20, scale: 0.8 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 0.4, type: 'spring' }}
-                    style={{ color: word.color }}
+                    style={{
+                      color: word.color,
+                      textShadow: `0 0 8px ${word.color}40`,
+                    }}
                     className="glitch-text"
                   >
                     {word.text}
@@ -161,7 +213,8 @@ const HeroPanel = () => {
               style={{
                 opacity: showCursor ? 1 : 0,
                 color: '#7c3aed',
-                marginLeft: '4px'
+                marginLeft: '4px',
+                textShadow: '0 0 8px rgba(124, 58, 237, 0.6)',
               }}
             >
               █
@@ -217,17 +270,20 @@ const HeroPanel = () => {
                 </div>
 
                 {/* Submit Button */}
-                <motion.button
+                <motion.a
+                  href={JOIN_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-3 brutal-btn bg-purple-600 text-white pixel-font text-sm md:text-base"
+                  className="block w-full py-3 brutal-btn bg-purple-600 text-white pixel-font text-sm md:text-base text-center"
                 >
                   {'>'} JOIN_THE_FAMILY
-                </motion.button>
+                </motion.a>
 
                 {/* Status Line */}
                 <div className="terminal-font text-xs text-gray-500">
-                  <span className="text-green-500">●</span> STATUS: READY_TO_CONNECT_
+                  <span className="text-cyan-500">●</span> STATUS: READY_TO_CONNECT_
                 </div>
               </div>
             </div>

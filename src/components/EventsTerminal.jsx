@@ -3,8 +3,8 @@ import { Calendar, Clock, MapPin, Terminal } from 'lucide-react';
 import eventsData from '../data/events.json';
 
 /**
- * EventsTerminal - Dark Terminal with Scanning Line (Mobile Optimized)
- * CRT monitor effect with matrix-style animations
+ * EventsTerminal - Dark Terminal with CRT Effect (Mobile Optimized)
+ * High-Tech terminal design with strict color hierarchy
  */
 const EventsTerminal = () => {
   const hasEvents = eventsData && eventsData.length > 0;
@@ -52,15 +52,17 @@ const EventsTerminal = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 md:mb-12"
         >
-          <h2 className="pixel-font-lg text-3xl md:text-5xl mb-2" style={{ color: '#7c3aed' }}>
-            UPCOMING_EVENTS
-          </h2>
-          <pre className="ascii-art text-xs mt-3 md:mt-4" style={{ color: '#10b981' }}>
-{`╔═══════════════════════════════════════════════╗
-║   REAL_TIME_EVENT_STREAM                      ║
-║   STATUS: <ACTIVE />                           ║
-╚═══════════════════════════════════════════════╝`}
-          </pre>
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <span className="terminal-font text-xs text-gray-500">EVENTS://</span>
+            <h2 className="pixel-font-lg text-3xl md:text-5xl" style={{ color: '#7c3aed' }}>
+              STREAM
+            </h2>
+          </div>
+          <div className="terminal-font text-sm text-gray-600">
+            <span style={{ color: '#06b6d4' }}>●</span> REAL_TIME_EVENT_STREAM
+            <span className="mx-2">|</span>
+            STATUS: <span style={{ color: '#db2777' }}>ACTIVE</span>
+          </div>
         </motion.div>
 
         {/* Terminal Window */}
@@ -128,19 +130,19 @@ const EventsTerminal = () => {
                           <div className="flex flex-wrap gap-2 md:gap-4 text-gray-400 terminal-font text-xs md:text-sm">
                             {event.date && (
                               <span className="flex items-center gap-1">
-                                <Calendar size={12} className="text-green-500" />
+                                <Calendar size={12} className="text-pink-500" />
                                 {event.date}
                               </span>
                             )}
                             {event.time && (
                               <span className="flex items-center gap-1">
-                                <Clock size={12} className="text-blue-500" />
+                                <Clock size={12} className="text-cyan-500" />
                                 {event.time}
                               </span>
                             )}
                             {event.location && (
                               <span className="flex items-center gap-1">
-                                <MapPin size={12} className="text-orange-500" />
+                                <MapPin size={12} className="text-blue-800" />
                                 <span className="truncate">{event.location}</span>
                               </span>
                             )}
@@ -164,39 +166,37 @@ const EventsTerminal = () => {
                     transition={{ duration: 2, repeat: Infinity }}
                     className="text-center"
                   >
-                    <pre className="terminal-font text-sm md:text-xl whitespace-pre" style={{ color: '#7c3aed' }}>
-{`╔══════════════════════════════════╗
-║                                  ║
-║   SCANNING FOR UPCOMING DATA...  ║
-║                                  ║
-║   [████░░░░░░░░░░░░░░░░░░░░] 15% ║
-║                                  ║
-╚══════════════════════════════════╝`}
-                    </pre>
+                    <div className="terminal-font text-base md:text-xl mb-4" style={{ color: '#7c3aed' }}>
+                      SCANNING FOR UPCOMING DATA...
+                    </div>
+
+                    {/* Loading Bar */}
+                    <div className="w-48 h-2 bg-gray-800 mx-auto overflow-hidden">
+                      <motion.div
+                        initial={{ x: '-100%' }}
+                        animate={{ x: '100%' }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
+                        className="h-full w-1/2"
+                        style={{
+                          background: 'linear-gradient(90deg, transparent, #7c3aed, transparent)',
+                        }}
+                      />
+                    </div>
 
                     {/* Blinking cursor */}
                     <motion.span
                       animate={{ opacity: [1, 0] }}
                       transition={{ duration: 0.8, repeat: Infinity }}
-                      className="terminal-font text-2xl md:text-3xl"
+                      className="terminal-font text-2xl md:text-3xl mt-4 inline-block"
                       style={{ color: '#7c3aed' }}
                     >
                       █
                     </motion.span>
 
-                    <p className="terminal-font text-xs md:text-sm text-gray-500 mt-3 md:mt-4">
+                    <p className="terminal-font text-xs md:text-sm text-gray-500 mt-4">
                       {'>'} AWAITING_EVENT_TRANSMISSION_
                     </p>
                   </motion.div>
-
-                  {/* Loading bar animation */}
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: ['0%', '100%', '0%'] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-                    className="mt-4 md:mt-6 h-1 bg-purple-500"
-                    style={{ boxShadow: '0 0 10px #7c3aed' }}
-                  />
                 </div>
               )}
             </div>
@@ -219,22 +219,17 @@ const EventsTerminal = () => {
           </div>
         </motion.div>
 
-        {/* ASCII Footer */}
+        {/* Footer */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="mt-6 md:mt-8 text-center"
         >
-          <pre className="ascii-art text-xs hidden md:block" style={{ color: '#10b981' }}>
-{`┌──────────────────────────────────────────────┐
-│  END_OF_EVENT_STREAM                          │
-│  [SYSTEM_READY]                               │
-└──────────────────────────────────────────────┘`}
-          </pre>
-          {/* Mobile simplified */}
-          <div className="md:hidden terminal-font text-xs" style={{ color: '#10b981' }}>
-            ── END_OF_EVENT_STREAM ──
+          <div className="terminal-font text-sm text-gray-600">
+            <span style={{ color: '#7c3aed' }}>SYS:</span> EVENTS_LOADED
+            <span className="mx-2">|</span>
+            <span style={{ color: '#06b6d4' }}>STREAM:</span> ONLINE
           </div>
         </motion.div>
       </div>

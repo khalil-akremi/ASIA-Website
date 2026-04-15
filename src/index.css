@@ -4,13 +4,17 @@
 @theme {
   --font-pixel: "VT323", monospace;
   --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Press Start 2P", cursive;
+  --font-mono: "JetBrains Mono", monospace;
 
-  /* Neo-Brutalist Colors */
+  /* Neo-Brutalist Colors - Strict Hierarchy */
+  /* Violet = Action, Cyan = Data, Pink = Alert */
   --color-brutal-bg: #f0f0f5;
-  --color-brutal-purple: #7c3aed;
+  --color-brutal-purple: #7c3aed;   /* Action - Primary */
+  --color-brutal-cyan: #06b6d4;      /* Data - Secondary */
+  --color-brutal-pink: #db2777;      /* Alert - Accent */
   --color-brutal-blue: #2563eb;
-  --color-brutal-green: #10b981;
-  --color-brutal-orange: #f97316;
+  --color-brutal-darkblue: #1e3a8a;
   --color-brutal-black: #000000;
   --color-brutal-white: #ffffff;
 }
@@ -128,17 +132,17 @@ body {
 /* Color Accents */
 .text-accent-purple { color: #7c3aed; }
 .text-accent-blue { color: #2563eb; }
-.text-accent-green { color: #10b981; }
-.text-accent-orange { color: #f97316; }
+.text-accent-pink { color: #db2777; }
+.text-accent-darkblue { color: #1e3a8a; }
 
 .bg-accent-purple { background-color: #7c3aed; }
 .bg-accent-blue { background-color: #2563eb; }
-.bg-accent-green { background-color: #10b981; }
-.bg-accent-orange { background-color: #f97316; }
+.bg-accent-pink { background-color: #db2777; }
+.bg-accent-darkblue { background-color: #1e3a8a; }
 
 /* Gradient Text */
 .gradient-text {
-  background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #db2777 0%, #1e3a8a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

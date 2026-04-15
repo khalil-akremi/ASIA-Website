@@ -3,30 +3,34 @@ import { Users, Layers, Target } from 'lucide-react';
 import { SPREADSHEET_ROWS, STATS } from '../data/constants';
 
 /**
- * StatsPanel - Neo-Brutalist statistics panel (Mobile Optimized)
- * Hard borders, solid shadows, raw aesthetic
+ * StatsPanel - Neo-Brutalist High-Tech Statistics
+ * Clean typography with strict color hierarchy
  */
 const StatsPanel = () => {
   const totalMembers = 11 + (SPREADSHEET_ROWS - 1);
 
+  // Stats with color hierarchy: Violet=Action, Cyan=Data, Pink=Alert
   const stats = [
     {
       label: 'MEMBERS',
       value: `${totalMembers}+`,
       icon: Users,
-      color: '#7c3aed',
+      color: '#7c3aed', // Violet - Action
+      type: 'action',
     },
     {
       label: 'POLES',
       value: STATS.poles,
       icon: Layers,
-      color: '#10b981',
+      color: '#06b6d4', // Cyan - Data
+      type: 'data',
     },
     {
       label: 'MISSION',
       value: '01',
       icon: Target,
-      color: '#2563eb',
+      color: '#db2777', // Pink - Alert
+      type: 'alert',
     },
   ];
 
@@ -40,13 +44,16 @@ const StatsPanel = () => {
         transition={{ duration: 0.6 }}
         className="text-center mb-8 md:mb-12"
       >
-        <h2 className="pixel-font-lg text-3xl md:text-5xl text-black mb-2">
-          BY_THE_NUMBERS
-        </h2>
-        <div className="w-24 md:w-32 h-1 bg-purple-600 border-2 border-black mx-auto" />
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <span className="terminal-font text-xs text-gray-500">STATS://</span>
+          <h2 className="pixel-font-lg text-3xl md:text-5xl text-black">METRICS</h2>
+        </div>
+        <div className="terminal-font text-sm text-gray-600">
+          <span style={{ color: '#7c3aed' }}>●</span> REAL_TIME_DATA <span style={{ color: '#06b6d4' }}>|</span> SYNC: <span style={{ color: '#10b981' }}>ONLINE</span>
+        </div>
       </motion.div>
 
-      {/* Stats Grid - Mobile First */}
+      {/* Stats Grid */}
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
         {stats.map((stat, index) => (
           <motion.div
@@ -62,8 +69,12 @@ const StatsPanel = () => {
               scale: 1.05,
               rotate: index % 2 === 0 ? -2 : 2,
             }}
-            className="bg-white p-4 md:p-6 border-2 md:border-3 border-black relative overflow-hidden group cursor-pointer"
-            style={{ boxShadow: '4px 4px 0px 0px #000' }}
+            className="bg-white p-4 md:p-6 relative overflow-hidden group cursor-pointer"
+            style={{
+              borderWidth: '0.5px',
+              borderColor: '#000',
+              boxShadow: '4px 4px 0px 0px #000',
+            }}
           >
             {/* Corner Accent */}
             <div
@@ -71,11 +82,24 @@ const StatsPanel = () => {
               style={{ backgroundColor: stat.color }}
             />
 
+            {/* Type Badge */}
+            <div
+              className="absolute top-2 right-2 px-2 py-0.5 terminal-font text-xs text-white"
+              style={{
+                background: stat.color,
+                opacity: 0.8,
+              }}
+            >
+              {stat.type.toUpperCase()}
+            </div>
+
             {/* Icon */}
             <div
-              className="w-12 md:w-16 h-12 md:h-16 flex items-center justify-center mb-3 md:mb-4 border-2 md:border-3 border-black"
+              className="w-12 md:w-16 h-12 md:h-16 flex items-center justify-center mb-3 md:mb-4"
               style={{
-                backgroundColor: `${stat.color}20`,
+                borderWidth: '0.5px',
+                borderColor: '#000',
+                backgroundColor: `${stat.color}15`,
                 boxShadow: '3px 3px 0px 0px #000',
               }}
             >
@@ -86,7 +110,10 @@ const StatsPanel = () => {
             {/* Value */}
             <div
               className="pixel-font-lg text-3xl md:text-5xl mb-1 md:mb-2"
-              style={{ color: stat.color }}
+              style={{
+                color: stat.color,
+                textShadow: `0 0 20px ${stat.color}40`,
+              }}
             >
               {stat.value}
             </div>
@@ -96,14 +123,22 @@ const StatsPanel = () => {
               {stat.label}
             </div>
 
-            {/* Decorative Lines */}
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-black" />
-            <div className="absolute top-0 bottom-0 right-0 w-1 bg-black" />
+            {/* Loading Bar */}
+            <div className="mt-3 h-1 bg-gray-100 overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: '100%' }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="h-full"
+                style={{ background: stat.color }}
+              />
+            </div>
           </motion.div>
         ))}
       </div>
 
-      {/* Bottom ASCII Divider */}
+      {/* Footer */}
       <motion.div
         initial={{ opacity: 0, scaleX: 0 }}
         whileInView={{ opacity: 1, scaleX: 1 }}
@@ -111,14 +146,10 @@ const StatsPanel = () => {
         transition={{ duration: 0.8, delay: 0.3 }}
         className="mt-12 md:mt-16 text-center"
       >
-        <pre className="ascii-art text-xs hidden md:block" style={{ color: '#7c3aed' }}>
-{`╔══════════════════════════════════════════════════════════════╗
-║                         ▓▓▓▓▓▓▓▓▓▓▓▓                        ║
-╚══════════════════════════════════════════════════════════════╝`}
-        </pre>
-        {/* Mobile simplified */}
-        <div className="md:hidden terminal-font text-sm" style={{ color: '#7c3aed' }}>
-          ═════════════════════════
+        <div className="terminal-font text-sm text-gray-600">
+          <span style={{ color: '#7c3aed' }}>SYS:</span> STATS_LOADED
+          <span className="mx-2">|</span>
+          <span style={{ color: '#06b6d4' }}>DATA:</span> SYNCED
         </div>
       </motion.div>
     </section>

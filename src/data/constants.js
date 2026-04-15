@@ -13,44 +13,44 @@ export const BOARD_MEMBERS = [
   { name: "Eya Bouhmida", title: "Head of Communication and Media", image: "eya.png" },
 ];
 
-// Poles Data
+// Poles Data with Mascot Images
 export const POLES = [
   {
     name: "Media",
-    mascot: "Gemini_Generated_Image_nbq627nbq627nbq6 (1).png",
+    mascot: "Gemini_Generated_Image_7wrcxb7wrcxb7wrc.png",
     description: "Creating compelling visual content and managing ASIA's digital presence."
   },
   {
     name: "Communication",
-    mascot: "Gemini_Generated_Image_18yc7w18yc7w18yc.png",
+    mascot: "Gemini_Generated_Image_u3whlxu3whlxu3wh.png",
     description: "Building bridges between ASIA and the community through strategic outreach."
   },
   {
     name: "Events",
-    mascot: "Gemini_Generated_Image_ly5y1aly5y1aly5y.png",
+    mascot: "Gemini_Generated_Image_myrppwmyrppwmyrp.png",
     description: "Organizing workshops, seminars, and networking events for members."
   },
   {
     name: "Projects",
-    mascot: "Gemini_Generated_Image_d7gq57d7gq57d7gq.png",
+    mascot: "Gemini_Generated_Image_fukforfukforfukf.png",
     description: "Leading innovative data science and AI projects with real-world impact."
   },
   {
     name: "Formation",
-    mascot: "Gemini_Generated_Image_nbq627nbq627nbq6 (1).png",
+    mascot: "Gemini_Generated_Image_t5vjrpt5vjrpt5vj.png",
     description: "Developing educational programs and skill-building workshops."
   },
   {
     name: "R&D",
-    mascot: "Gemini_Generated_Image_18yc7w18yc7w18yc.png",
+    mascot: "Gemini_Generated_Image_czqkstczqkstczqk.png",
     description: "Advancing research in statistics and artificial intelligence."
   },
 ];
 
 // Social Links
 export const SOCIALS = {
-  facebook: "https://facebook.com/asia.tn",
-  instagram: "https://instagram.com/asia.tn",
+  facebook: "https://www.facebook.com/profile.php?id=61586610662717",
+  instagram: "https://www.instagram.com/association.asia/",
   linkedin: "https://linkedin.com/company/asia-tn",
   email: "mailto:contact@asia.tn",
 };
@@ -58,8 +58,9 @@ export const SOCIALS = {
 // Member Count Calculation
 export const SPREADSHEET_ROWS = 11;
 
-// WeTransfer Link
-export const WETRANSFER_LINK = "https://we.tl/t-ZCqqq1FNsGMQRGVS";
+// Links
+export const JOIN_LINK = "https://docs.google.com/forms/d/18wBvc4TMcOx6eb0hi844FH80zJqFuzNASC0l0SLnKkc/edit";
+export const PROJECTS_LINK = "/project.html"; // RAG API Build Guide page
 
 // Organization Stats
 export const STATS = {
@@ -69,8 +70,13 @@ export const STATS = {
 
 // Mascot Images (for random placement across site)
 export const MASCOT_IMAGES = [
-  "Gemini_Generated_Image_nbq627nbq627nbq6 (1).png",
-  "Gemini_Generated_Image_18yc7w18yc7w18yc.png",
-  "Gemini_Generated_Image_ly5y1aly5y1aly5y.png",
-  "Gemini_Generated_Image_d7gq57d7gq57d7gq.png",
+  "Gemini_Generated_Image_7wrcxb7wrcxb7wrc.png",
+  "Gemini_Generated_Image_u3whlxu3whlxu3wh.png",
+  "Gemini_Generated_Image_myrppwmyrppwmyrp.png",
+  "Gemini_Generated_Image_fukforfukforfukf.png",
+  "Gemini_Generated_Image_t5vjrpt5vjrpt5vj.png",
+  "Gemini_Generated_Image_czqkstczqkstczqk.png",
 ];
+
+// Central Mascot (Alpha) for "Meet Alpha" section
+export const CENTRAL_MASCOT = "Gemini_Generated_Image_gimffggimffggimf.png";

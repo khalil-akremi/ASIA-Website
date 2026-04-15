@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { Mail, ArrowRight, Users, Camera, Link2 } from 'lucide-react';
-import { SOCIALS, WETRANSFER_LINK } from '../data/constants';
+import { SOCIALS, JOIN_LINK, PROJECTS_LINK } from '../data/constants';
 
 /**
- * JoinSection - Neo-Brutalist Join Section with ASCII Footer (Mobile Optimized)
- * Gallery and socials with hard borders and shadows
+ * JoinSection - Neo-Brutalist High-Tech Join Section
+ * Clean typography with strict color hierarchy
  */
 const JoinSection = () => {
   const galleryImages = [
@@ -42,15 +42,15 @@ const JoinSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-10 md:mb-12"
         >
-          <h2 className="pixel-font-lg text-3xl md:text-5xl text-black mb-2">
-            JOIN_THE_FAMILY
-          </h2>
-          <pre className="ascii-art text-xs mt-3" style={{ color: '#f97316' }}>
-{`╔═══════════════════════════════════════════════╗
-║   BECOME_PART_OF_THE_COMMUNITY                ║
-║   LEARN · GROW · BUILD · CONNECT               ║
-╚═══════════════════════════════════════════════╝`}
-          </pre>
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <span className="terminal-font text-xs text-gray-500">JOIN://</span>
+            <h2 className="pixel-font-lg text-3xl md:text-5xl text-black">THE_FAMILY</h2>
+          </div>
+          <div className="terminal-font text-sm text-gray-600">
+            <span style={{ color: '#db2777' }}>●</span> BECOME_PART_OF_THE_COMMUNITY
+            <span className="mx-2" style={{ color: '#06b6d4' }}>|</span>
+            LEARN · GROW · BUILD
+          </div>
         </motion.div>
 
         {/* Gallery Grid - Mobile First */}
@@ -71,8 +71,8 @@ const JoinSection = () => {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="relative"
               >
-                <div className="bg-white p-1.5 pb-6 border-2 border-black" style={{ boxShadow: '4px 4px 0px 0px #000' }}>
-                  <div className="aspect-square overflow-hidden bg-gray-200 border-2 border-black">
+                <div className="bg-white p-1.5 pb-6" style={{ borderWidth: '0.5px', borderColor: '#000', boxShadow: '4px 4px 0px 0px #000' }}>
+                  <div className="aspect-square overflow-hidden bg-gray-200 border border-black">
                     <img
                       src={image.src}
                       alt={image.alt}
@@ -80,8 +80,8 @@ const JoinSection = () => {
                       onError={(e) => {
                         e.target.style.display = 'none';
                         e.target.parentElement.innerHTML = `
-                          <div class="w-full h-full flex items-center justify-center" style="background: linear-gradient(135deg, #7c3aed40, #2563eb40)">
-                            <span class="pixel-font text-2xl text-purple-600">ASIA</span>
+                          <div class="w-full h-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(6,182,212,0.2))">
+                            <span class="pixel-font text-2xl" style="color: #7c3aed">ASIA</span>
                           </div>
                         `;
                       }}
@@ -125,8 +125,8 @@ const JoinSection = () => {
                       onError={(e) => {
                         e.target.style.display = 'none';
                         e.target.parentElement.innerHTML = `
-                          <div class="w-full h-full flex items-center justify-center" style="background: linear-gradient(135deg, #7c3aed40, #2563eb40)">
-                            <span class="pixel-font text-2xl text-purple-600">ASIA</span>
+                          <div class="w-full h-full flex items-center justify-center" style="background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(6,182,212,0.2))">
+                            <span class="pixel-font text-2xl" style="color: #7c3aed">ASIA</span>
                           </div>
                         `;
                       }}
@@ -141,7 +141,7 @@ const JoinSection = () => {
 
                 {/* Tape effect */}
                 <div
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 w-14 h-5 bg-yellow-300 border-2 border-black"
+                  className="absolute -top-3 left-1/2 w-14 h-5 bg-yellow-300 border-2 border-black"
                   style={{ transform: `translateX(-50%) rotate(${Math.random() * 10 - 5}deg)` }}
                 />
               </motion.div>
@@ -158,7 +158,7 @@ const JoinSection = () => {
           className="text-center mb-12 md:mb-16"
         >
           <a
-            href={WETRANSFER_LINK}
+            href={PROJECTS_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block"
@@ -167,9 +167,12 @@ const JoinSection = () => {
               whileHover={{ scale: 1.02, x: 2, y: 2 }}
               whileTap={{ scale: 0.98, x: 5, y: 5 }}
               className="brutal-btn bg-purple-600 text-white px-6 py-4 md:px-10 md:py-5"
+              style={{
+                background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)',
+              }}
             >
               <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base">
-                {'>'} DOWNLOAD_RESOURCES
+                {'>'} CHECK_PROJECTS
                 <ArrowRight size={18} />
               </span>
             </motion.button>
@@ -184,9 +187,12 @@ const JoinSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mb-10 md:mb-12"
         >
-          <h3 className="pixel-font text-lg md:text-xl text-black mb-4 md:mb-6">
-            CONNECT_WITH_US
-          </h3>
+          <div className="flex items-center justify-center gap-2 mb-4 md:mb-6">
+            <span className="terminal-font text-xs text-gray-500">CONNECT://</span>
+            <h3 className="pixel-font text-lg md:text-xl text-black">
+              WITH_US
+            </h3>
+          </div>
 
           {/* Mobile: 2x2 Grid */}
           <div className="grid grid-cols-2 gap-3 px-4 md:hidden">
@@ -201,10 +207,10 @@ const JoinSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className="bg-white border-2 border-black flex items-center justify-center gap-2 px-3 py-3"
-                style={{ boxShadow: '3px 3px 0px 0px #000' }}
+                className="bg-white flex items-center justify-center gap-2 px-3 py-3"
+                style={{ borderWidth: '0.5px', borderColor: '#000', boxShadow: '3px 3px 0px 0px #000' }}
               >
-                <social.icon size={18} className="text-purple-600" />
+                <social.icon size={18} style={{ color: '#7c3aed' }} />
                 <span className="terminal-font text-sm text-black">{social.name}</span>
               </motion.a>
             ))}
@@ -223,72 +229,71 @@ const JoinSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 + 0.5 }}
                 whileHover={{ scale: 1.1 }}
-                className="bg-white border-3 border-black flex items-center gap-2 px-4 py-2"
-                style={{ boxShadow: '4px 4px 0px 0px #000' }}
+                className="bg-white flex items-center gap-2 px-4 py-2"
+                style={{ borderWidth: '0.5px', borderColor: '#000', boxShadow: '4px 4px 0px 0px #000' }}
               >
-                <social.icon size={20} className="text-purple-600" />
+                <social.icon size={20} style={{ color: '#7c3aed' }} />
                 <span className="terminal-font text-sm text-black">{social.name}</span>
               </motion.a>
             ))}
           </div>
         </motion.div>
 
-        {/* ASCII Art Footer */}
+        {/* Footer */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="mt-10 md:mt-16"
         >
-          <pre className="ascii-art text-xs md:text-sm hidden md:block" style={{ color: '#7c3aed' }}>
-{`
-    ██████╗  █████╗ ███████╗ █████╗ ██████╗  █████╗
-   ██╔════╝ ██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗
-   ██║      ███████║███████╗███████║██████╔╝███████║
-   ██║      ██╔══██║╚════██║██╔══██║██╔══██╗██╔══██║
-   ╚██████╗ ██║  ██║███████║██║  ██║██║  ██║██║  ██║
-    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝
-
-   Association de Statistique et d'Intelligence Artificielle
-   ═════════════════════════════════════════════════════
-
-   [CONNECT]  [LEARN]  [COMMUNICATE]  [BUILD]  [LEAD]
-
-   ┌────────────────────────────────────────────────────┐
-   │  © ${new Date().getFullYear()} ASIA - All Rights Reserved         │
-   │  Built with 💜 by ASIA Tech Team                   │
-   └────────────────────────────────────────────────────┘
-`}
-          </pre>
-          {/* Mobile simplified footer */}
-          <div className="md:hidden text-center">
-            <pre className="ascii-art text-xs" style={{ color: '#7c3aed' }}>
-{`   ██████╗  █████╗ ███████╗ █████╗ ██████╗  █████╗
-   ██╔════╝ ██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗
-   ██║      ███████║███████╗███████║██████╔╝███████║
-   ██║      ██╔══██║╚════██║██╔══██║██╔══██╗██╔══██║
-   ╚██████╗ ██║  ██║███████║██║  ██║██║  ██║██║  ██║
-    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝`}
+          {/* ASCII Logo Footer - Desktop */}
+          <div className="hidden md:block text-center mb-8">
+            <pre
+              className="font-mono text-base"
+              style={{
+                color: '#7c3aed',
+                textShadow: '0 0 10px rgba(124, 58, 237, 0.5)',
+                letterSpacing: '0.1em',
+              }}
+            >
+{`    █████╗  ██████╗ ██████╗ ███████╗
+   ██╔══██╗██╔════╝██╔════╝ ██╔════╝
+   ███████║██║     ██║     █████╗
+   ██╔══██║██║     ██║     ██╔══╝
+   ██║  ██║╚██████╗╚██████╗███████╗
+   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚══════╝`}
             </pre>
             <p className="terminal-font text-xs mt-4 text-gray-600">
+              Association de Statistique et d'Intelligence Artificielle
+            </p>
+          </div>
+
+          {/* Mobile simplified footer */}
+          <div className="md:hidden text-center">
+            <pre
+              className="font-mono text-xs"
+              style={{
+                color: '#7c3aed',
+                textShadow: '0 0 8px rgba(124, 58, 237, 0.5)',
+              }}
+            >
+{`█████╗ ██████╗
+╚════╝ ╚═════╝`}
+            </pre>
+            <p className="terminal-font text-xs mt-2 text-gray-600">
               © {new Date().getFullYear()} ASIA - All Rights Reserved
             </p>
           </div>
-        </motion.div>
 
-        {/* Footer Links */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-6 md:mt-8 text-center"
-        >
-          <div className="terminal-font text-xs md:text-sm text-gray-600">
-            <span>VERSION_2.0</span>
-            <span className="mx-2 md:mx-4 hidden sm:inline">|</span>
-            <span className="hidden sm:inline">NEO_BRUTALIST_EDITION</span>
-            <span className="mx-2 md:mx-4 hidden sm:inline">|</span>
-            <span className="hidden sm:inline">CYBER_TERMINAL_UI</span>
+          {/* Version Info */}
+          <div className="mt-6 md:mt-8 text-center">
+            <div className="terminal-font text-xs md:text-sm text-gray-600">
+              <span style={{ color: '#7c3aed' }}>VERSION:</span> 2.0
+              <span className="mx-2 md:mx-4">|</span>
+              <span style={{ color: '#06b6d4' }}>BUILD:</span> NEO_BRUTALIST
+              <span className="mx-2 md:mx-4 hidden sm:inline">|</span>
+              <span className="hidden sm:inline" style={{ color: '#db2777' }}>UI:</span> CYBER_TERMINAL
+            </div>
           </div>
         </motion.div>
       </div>
