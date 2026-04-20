@@ -5,9 +5,16 @@ import { CENTRAL_MASCOT } from '../data/constants';
  * MeetAlpha - "Meet Alpha, Our ASIA Mascot" Section
  * Clean typography with floating mascot design
  */
-const MeetAlpha = () => {
+const MeetAlpha = ({ darkMode = false }) => {
   return (
-    <section className="py-16 md:py-24 px-4 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #f0f0f5 0%, #fce7f3 50%, #f0f0f5 100%)' }}>
+    <section
+      className="py-16 md:py-24 px-4 relative overflow-hidden"
+      style={{
+        background: darkMode
+          ? 'linear-gradient(180deg, #0b2f6b 0%, #092550 100%)'
+          : 'linear-gradient(180deg, #f0f0f5 0%, #fce7f3 50%, #f0f0f5 100%)'
+      }}
+    >
       {/* Dot Grid Background */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -28,10 +35,10 @@ const MeetAlpha = () => {
           className="text-center mb-8 md:mb-12"
         >
           <div className="flex items-center justify-center gap-2 mb-2">
-            <span className="terminal-font text-xs text-gray-500">MASCOT://</span>
-            <h2 className="pixel-font-lg text-3xl md:text-5xl text-black">ALPHA</h2>
+            <span className="terminal-font text-xs" style={{ color: darkMode ? '#a7b9d6' : '#6b7280' }}>MASCOT://</span>
+            <h2 className="pixel-font-lg text-3xl md:text-5xl" style={{ color: darkMode ? '#f4f8ff' : '#000' }}>ALPHA</h2>
           </div>
-          <div className="terminal-font text-sm text-gray-600">
+          <div className="terminal-font text-sm" style={{ color: darkMode ? '#cbd9ef' : '#4b5563' }}>
             <span style={{ color: '#db2777' }}>●</span> OUR_ASIA_MASCOT
             <span className="mx-2" style={{ color: '#06b6d4' }}>|</span>
             STATUS: <span style={{ color: '#10b981' }}>ACTIVE</span>
@@ -48,12 +55,13 @@ const MeetAlpha = () => {
         >
           {/* Main Mascot Card */}
           <div
-            className="relative mx-auto bg-white overflow-visible"
+            className="relative mx-auto overflow-visible"
             style={{
               borderWidth: '0.5px',
               borderColor: '#000',
               boxShadow: '8px 8px 0px 0px #db2777, 12px 12px 20px rgba(219, 39, 119, 0.3)',
-              maxWidth: '400px'
+              maxWidth: '400px',
+              background: darkMode ? '#132b54' : '#fff'
             }}
           >
             {/* Header Bar */}
@@ -107,18 +115,18 @@ const MeetAlpha = () => {
             </div>
 
             {/* Caption */}
-            <div className="p-4 bg-white text-center">
-              <h3 className="pixel-font text-xl mb-2" style={{ color: '#1e3a8a' }}>
+            <div className="p-4 text-center" style={{ background: darkMode ? '#132b54' : '#fff' }}>
+              <h3 className="pixel-font text-xl mb-2" style={{ color: darkMode ? '#7dd3fc' : '#1e3a8a' }}>
                 ALPHA
               </h3>
-              <p className="terminal-font text-sm text-gray-600">
+              <p className="terminal-font text-sm" style={{ color: darkMode ? '#cbd9ef' : '#4b5563' }}>
                 The friendly face of ASIA
               </p>
 
               {/* Loading Bar */}
               <div className="mt-3 flex items-center gap-2">
-                <span className="terminal-font text-xs text-gray-400">ENERGY</span>
-                <div className="flex-1 h-1.5 bg-gray-100 overflow-hidden border border-gray-200">
+                <span className="terminal-font text-xs" style={{ color: darkMode ? '#a7b9d6' : '#9ca3af' }}>ENERGY</span>
+                <div className="flex-1 h-1.5 overflow-hidden border" style={{ background: darkMode ? '#12335c' : '#f3f4f6', borderColor: darkMode ? 'rgba(255,255,255,0.2)' : '#e5e7eb' }}>
                   <div
                     className="h-full"
                     style={{
@@ -127,7 +135,7 @@ const MeetAlpha = () => {
                     }}
                   />
                 </div>
-                <span className="terminal-font text-xs" style={{ color: '#10b981' }}>
+                <span className="terminal-font text-xs" style={{ color: darkMode ? '#34d399' : '#10b981' }}>
                   100%
                 </span>
               </div>
@@ -172,7 +180,7 @@ const MeetAlpha = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-8 text-center"
         >
-          <p className="terminal-font text-sm md:text-base text-gray-700 max-w-lg mx-auto">
+          <p className="terminal-font text-sm md:text-base max-w-lg mx-auto" style={{ color: darkMode ? '#d5e1f3' : '#374151' }}>
             Alpha represents the spirit of our community — curious, innovative,
             and always ready to learn. Join us in building the future of data science
             and artificial intelligence.
@@ -186,7 +194,7 @@ const MeetAlpha = () => {
           viewport={{ once: true }}
           className="mt-8 text-center"
         >
-          <div className="terminal-font text-sm text-gray-600">
+          <div className="terminal-font text-sm" style={{ color: darkMode ? '#cbd9ef' : '#4b5563' }}>
             <span style={{ color: '#7c3aed' }}>SYS:</span> MASCOT_LOADED
             <span className="mx-2">|</span>
             <span style={{ color: '#06b6d4' }}>STATUS:</span> FRIENDLY

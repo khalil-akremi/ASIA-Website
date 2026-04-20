@@ -5,7 +5,7 @@ import { BOARD_MEMBERS } from '../data/constants';
  * BoardGrid - Neo-Brutalist High-Tech Board Gallery
  * Clean typography with floating card design
  */
-const BoardGrid = () => {
+const BoardGrid = ({ darkMode = false }) => {
   // Pre-defined random rotations for each member (consistent across renders)
   const rotations = [
     -5, 3, -2, 4, -4, 2, -3, 5, -1, 3, -6
@@ -33,7 +33,10 @@ const BoardGrid = () => {
   ];
 
   return (
-    <section className="py-16 md:py-20 px-4 relative overflow-hidden" style={{ background: '#f0f0f5' }}>
+    <section
+      className="py-16 md:py-20 px-4 relative overflow-hidden"
+      style={{ background: darkMode ? 'linear-gradient(180deg, #0b2f6b 0%, #092550 100%)' : '#f0f0f5' }}
+    >
       {/* Dot Grid Background */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -73,11 +76,12 @@ const BoardGrid = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="bg-white overflow-hidden"
+              className="overflow-hidden"
               style={{
                 borderWidth: '0.5px',
                 borderColor: '#000',
                 boxShadow: '3px 3px 0px 0px #000',
+                background: darkMode ? '#132b54' : '#fff',
               }}
             >
               {/* Photo */}
@@ -109,7 +113,7 @@ const BoardGrid = () => {
                 </div>
               </div>
               {/* Caption */}
-              <div className="p-2 text-center bg-white">
+              <div className="p-2 text-center" style={{ background: darkMode ? '#132b54' : '#fff' }}>
                 <h3 className="pixel-font text-xs text-black truncate">
                   {member.name.toUpperCase()}
                 </h3>
@@ -158,7 +162,7 @@ const BoardGrid = () => {
               }}
             >
               {/* Polaroid Frame */}
-              <div className="bg-white border-3 border-black" style={{ boxShadow: '6px 6px 0px 0px #000' }}>
+              <div className="border-3 border-black" style={{ boxShadow: '6px 6px 0px 0px #000', background: darkMode ? '#132b54' : '#fff' }}>
                 {/* Photo */}
                 <div className="relative aspect-square overflow-hidden bg-gray-100">
                   <img
@@ -192,7 +196,7 @@ const BoardGrid = () => {
                 </div>
 
                 {/* Caption */}
-                <div className="p-4 text-center bg-white">
+                <div className="p-4 text-center" style={{ background: darkMode ? '#132b54' : '#fff' }}>
                   <h3 className="pixel-font text-sm text-black mb-1 truncate">
                     {member.name.toUpperCase()}
                   </h3>

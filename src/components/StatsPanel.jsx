@@ -6,7 +6,7 @@ import { SPREADSHEET_ROWS, STATS } from '../data/constants';
  * StatsPanel - Neo-Brutalist High-Tech Statistics
  * Clean typography with strict color hierarchy
  */
-const StatsPanel = () => {
+const StatsPanel = ({ darkMode = false }) => {
   const totalMembers = 11 + (SPREADSHEET_ROWS - 1);
 
   // Stats with color hierarchy: Violet=Action, Cyan=Data, Pink=Alert
@@ -34,8 +34,12 @@ const StatsPanel = () => {
     },
   ];
 
+  const bgClass = darkMode ? 'bg-gray-900' : 'dot-grid-bg';
+  const textClass = darkMode ? 'text-white' : 'text-black';
+  const subTextClass = darkMode ? 'text-gray-400' : 'text-gray-600';
+
   return (
-    <section className="py-12 md:py-20 px-4 dot-grid-bg relative overflow-hidden">
+    <section className={`py-12 md:py-20 px-4 ${bgClass} relative overflow-hidden`}>
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -46,9 +50,9 @@ const StatsPanel = () => {
       >
         <div className="flex items-center justify-center gap-2 mb-2">
           <span className="terminal-font text-xs text-gray-500">STATS://</span>
-          <h2 className="pixel-font-lg text-3xl md:text-5xl text-black">METRICS</h2>
+          <h2 className={`pixel-font-lg text-3xl md:text-5xl ${textClass}`}>METRICS</h2>
         </div>
-        <div className="terminal-font text-sm text-gray-600">
+        <div className={`terminal-font text-sm ${subTextClass}`}>
           <span style={{ color: '#7c3aed' }}>●</span> REAL_TIME_DATA <span style={{ color: '#06b6d4' }}>|</span> SYNC: <span style={{ color: '#10b981' }}>ONLINE</span>
         </div>
       </motion.div>
@@ -69,7 +73,7 @@ const StatsPanel = () => {
               scale: 1.05,
               rotate: index % 2 === 0 ? -2 : 2,
             }}
-            className="bg-white p-4 md:p-6 relative overflow-hidden group cursor-pointer"
+            className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-4 md:p-6 relative overflow-hidden group cursor-pointer`}
             style={{
               borderWidth: '0.5px',
               borderColor: '#000',
@@ -119,12 +123,12 @@ const StatsPanel = () => {
             </div>
 
             {/* Label */}
-            <div className="terminal-font text-base md:text-lg text-black tracking-wider">
+            <div className={`terminal-font text-base md:text-lg ${textClass} tracking-wider`}>
               {stat.label}
             </div>
 
             {/* Loading Bar */}
-            <div className="mt-3 h-1 bg-gray-100 overflow-hidden">
+            <div className={`mt-3 h-1 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'} overflow-hidden`}>
               <motion.div
                 initial={{ width: 0 }}
                 whileInView={{ width: '100%' }}
@@ -146,7 +150,7 @@ const StatsPanel = () => {
         transition={{ duration: 0.8, delay: 0.3 }}
         className="mt-12 md:mt-16 text-center"
       >
-        <div className="terminal-font text-sm text-gray-600">
+        <div className={`terminal-font text-sm ${subTextClass}`}>
           <span style={{ color: '#7c3aed' }}>SYS:</span> STATS_LOADED
           <span className="mx-2">|</span>
           <span style={{ color: '#06b6d4' }}>DATA:</span> SYNCED

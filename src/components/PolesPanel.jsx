@@ -6,7 +6,7 @@ import { POLES } from '../data/constants';
  * Each pole is a control module with grid coordinates, loading bars, and connection lines
  * Mascots are floating PNG layers with drop-shadow
  */
-const PolesPanel = () => {
+const PolesPanel = ({ darkMode = false }) => {
   // Gradient colors for each pole header (Violet=Action, Cyan=Data, Pink=Alert)
   const poleConfig = [
     { gradient: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)', coord: 'A-1', status: 'ACTIVE', type: 'action' },
@@ -31,7 +31,10 @@ const PolesPanel = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 px-4 relative overflow-hidden" style={{ background: '#f0f0f5' }}>
+    <section
+      className="py-16 md:py-24 px-4 relative overflow-hidden"
+      style={{ background: darkMode ? 'linear-gradient(180deg, #0b2f6b 0%, #092550 100%)' : '#f0f0f5' }}
+    >
       {/* Connection Lines SVG - Desktop Only */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
@@ -87,11 +90,12 @@ const PolesPanel = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="relative bg-white overflow-hidden"
+              className="relative overflow-hidden"
               style={{
                 borderWidth: '0.5px',
                 borderColor: '#000',
                 boxShadow: '4px 4px 0px 0px rgba(0,0,0,0.3)',
+                background: darkMode ? '#132b54' : '#fff',
               }}
             >
               {/* Grid Coordinate Badge */}
@@ -154,7 +158,7 @@ const PolesPanel = () => {
                   }}
                 />
                 <div className="p-4 pr-32">
-                  <p className="terminal-font text-sm text-gray-700">
+                  <p className="terminal-font text-sm leading-relaxed" style={{ color: darkMode ? '#d5e1f3' : '#374151' }}>
                     {pole.description}
                   </p>
                 </div>
@@ -320,14 +324,14 @@ const PolesPanel = () => {
               {/* Stats Panel */}
               <div className="px-4 pb-2">
                 <div className="flex gap-3 mb-2">
-                  <div className="flex-1 p-2 bg-gray-50 border border-gray-200">
-                    <span className="terminal-font text-xs text-gray-500">MEMBERS</span>
+                  <div className="flex-1 p-2 border" style={{ background: darkMode ? '#12335c' : '#f9fafb', borderColor: darkMode ? 'rgba(255,255,255,0.2)' : '#e5e7eb' }}>
+                    <span className="terminal-font text-xs" style={{ color: darkMode ? '#a7b9d6' : '#6b7280' }}>MEMBERS</span>
                     <div className="pixel-font text-sm" style={{ color: '#7c3aed' }}>
                       {Math.floor(Math.random() * 20) + 10}
                     </div>
                   </div>
-                  <div className="flex-1 p-2 bg-gray-50 border border-gray-200">
-                    <span className="terminal-font text-xs text-gray-500">PROJECTS</span>
+                  <div className="flex-1 p-2 border" style={{ background: darkMode ? '#12335c' : '#f9fafb', borderColor: darkMode ? 'rgba(255,255,255,0.2)' : '#e5e7eb' }}>
+                    <span className="terminal-font text-xs" style={{ color: darkMode ? '#a7b9d6' : '#6b7280' }}>PROJECTS</span>
                     <div className="pixel-font text-sm" style={{ color: '#06b6d4' }}>
                       {Math.floor(Math.random() * 5) + 2}
                     </div>
@@ -336,8 +340,8 @@ const PolesPanel = () => {
 
                 {/* Loading Bar */}
                 <div className="flex items-center gap-2">
-                  <span className="terminal-font text-xs text-gray-400">LOAD</span>
-                  <div className="flex-1 h-1.5 bg-gray-100 overflow-hidden border border-gray-200">
+                  <span className="terminal-font text-xs" style={{ color: darkMode ? '#a7b9d6' : '#9ca3af' }}>LOAD</span>
+                  <div className="flex-1 h-1.5 overflow-hidden border" style={{ background: darkMode ? '#12335c' : '#f3f4f6', borderColor: darkMode ? 'rgba(255,255,255,0.2)' : '#e5e7eb' }}>
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${loadingBars[index]}%` }}

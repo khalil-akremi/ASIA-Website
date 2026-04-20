@@ -6,7 +6,7 @@ import { SOCIALS, JOIN_LINK, PROJECTS_LINK } from '../data/constants';
  * JoinSection - Neo-Brutalist High-Tech Join Section
  * Clean typography with strict color hierarchy
  */
-const JoinSection = () => {
+const JoinSection = ({ darkMode = false }) => {
   const galleryImages = [
     { src: '/gallery/460c2c27-b130-478c-b91a-2c6e2644ce8e.jpg', alt: 'ASIA Group Photo 1', rotation: -3 },
     { src: '/gallery/71be68bb-3961-47d8-8ca3-a207676e24d0.jpg', alt: 'ASIA Group Photo 2', rotation: 4 },
@@ -22,7 +22,10 @@ const JoinSection = () => {
   ];
 
   return (
-    <section className="py-16 md:py-20 px-4 relative overflow-hidden" style={{ background: '#f0f0f5' }}>
+    <section
+      className="py-16 md:py-20 px-4 relative overflow-hidden"
+      style={{ background: darkMode ? 'linear-gradient(180deg, #0b2f6b 0%, #092550 100%)' : '#f0f0f5' }}
+    >
       {/* Dot Grid Background */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -43,10 +46,10 @@ const JoinSection = () => {
           className="text-center mb-10 md:mb-12"
         >
           <div className="flex items-center justify-center gap-2 mb-2">
-            <span className="terminal-font text-xs text-gray-500">JOIN://</span>
-            <h2 className="pixel-font-lg text-3xl md:text-5xl text-black">THE_FAMILY</h2>
+            <span className="terminal-font text-xs" style={{ color: darkMode ? '#a7b9d6' : '#6b7280' }}>JOIN://</span>
+            <h2 className="pixel-font-lg text-3xl md:text-5xl" style={{ color: darkMode ? '#f4f8ff' : '#000' }}>THE_FAMILY</h2>
           </div>
-          <div className="terminal-font text-sm text-gray-600">
+          <div className="terminal-font text-sm" style={{ color: darkMode ? '#cbd9ef' : '#4b5563' }}>
             <span style={{ color: '#db2777' }}>●</span> BECOME_PART_OF_THE_COMMUNITY
             <span className="mx-2" style={{ color: '#06b6d4' }}>|</span>
             LEARN · GROW · BUILD
@@ -71,8 +74,8 @@ const JoinSection = () => {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="relative"
               >
-                <div className="bg-white p-1.5 pb-6" style={{ borderWidth: '0.5px', borderColor: '#000', boxShadow: '4px 4px 0px 0px #000' }}>
-                  <div className="aspect-square overflow-hidden bg-gray-200 border border-black">
+                <div className="p-1.5 pb-6" style={{ borderWidth: '0.5px', borderColor: '#000', boxShadow: '4px 4px 0px 0px #000', background: darkMode ? '#132b54' : '#fff' }}>
+                  <div className="aspect-square overflow-hidden border" style={{ background: darkMode ? '#12335c' : '#e5e7eb', borderColor: '#000' }}>
                     <img
                       src={image.src}
                       alt={image.alt}
@@ -88,7 +91,7 @@ const JoinSection = () => {
                     />
                   </div>
                   <div className="mt-1.5 text-center">
-                    <span className="terminal-font text-xs text-gray-600">
+                    <span className="terminal-font text-xs" style={{ color: darkMode ? '#a7b9d6' : '#4b5563' }}>
                       #{String(index + 1).padStart(2, '0')}
                     </span>
                   </div>
@@ -116,8 +119,8 @@ const JoinSection = () => {
                   transform: `rotate(${image.rotation}deg)`,
                 }}
               >
-                <div className="bg-white p-2 pb-8 border-3 border-black" style={{ boxShadow: '6px 6px 0px 0px #000' }}>
-                  <div className="w-40 h-40 md:w-48 md:h-48 overflow-hidden bg-gray-200 border-2 border-black">
+                <div className="p-2 pb-8 border-3 border-black" style={{ boxShadow: '6px 6px 0px 0px #000', background: darkMode ? '#132b54' : '#fff' }}>
+                  <div className="w-40 h-40 md:w-48 md:h-48 overflow-hidden border-2 border-black" style={{ background: darkMode ? '#12335c' : '#e5e7eb' }}>
                     <img
                       src={image.src}
                       alt={image.alt}
@@ -133,7 +136,7 @@ const JoinSection = () => {
                     />
                   </div>
                   <div className="mt-2 text-center">
-                    <span className="terminal-font text-xs text-gray-600">
+                    <span className="terminal-font text-xs" style={{ color: darkMode ? '#a7b9d6' : '#4b5563' }}>
                       GROUP_PHOTO_#{String(index + 1).padStart(2, '0')}
                     </span>
                   </div>
@@ -188,8 +191,8 @@ const JoinSection = () => {
           className="text-center mb-10 md:mb-12"
         >
           <div className="flex items-center justify-center gap-2 mb-4 md:mb-6">
-            <span className="terminal-font text-xs text-gray-500">CONNECT://</span>
-            <h3 className="pixel-font text-lg md:text-xl text-black">
+            <span className="terminal-font text-xs" style={{ color: darkMode ? '#a7b9d6' : '#6b7280' }}>CONNECT://</span>
+            <h3 className="pixel-font text-lg md:text-xl" style={{ color: darkMode ? '#f4f8ff' : '#000' }}>
               WITH_US
             </h3>
           </div>
@@ -207,11 +210,11 @@ const JoinSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className="bg-white flex items-center justify-center gap-2 px-3 py-3"
-                style={{ borderWidth: '0.5px', borderColor: '#000', boxShadow: '3px 3px 0px 0px #000' }}
+                className="flex items-center justify-center gap-2 px-3 py-3"
+                style={{ borderWidth: '0.5px', borderColor: '#000', boxShadow: '3px 3px 0px 0px #000', background: darkMode ? '#132b54' : '#fff' }}
               >
                 <social.icon size={18} style={{ color: '#7c3aed' }} />
-                <span className="terminal-font text-sm text-black">{social.name}</span>
+                <span className="terminal-font text-sm" style={{ color: darkMode ? '#f4f8ff' : '#000' }}>{social.name}</span>
               </motion.a>
             ))}
           </div>
@@ -229,11 +232,11 @@ const JoinSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 + 0.5 }}
                 whileHover={{ scale: 1.1 }}
-                className="bg-white flex items-center gap-2 px-4 py-2"
-                style={{ borderWidth: '0.5px', borderColor: '#000', boxShadow: '4px 4px 0px 0px #000' }}
+                className="flex items-center gap-2 px-4 py-2"
+                style={{ borderWidth: '0.5px', borderColor: '#000', boxShadow: '4px 4px 0px 0px #000', background: darkMode ? '#132b54' : '#fff' }}
               >
                 <social.icon size={20} style={{ color: '#7c3aed' }} />
-                <span className="terminal-font text-sm text-black">{social.name}</span>
+                <span className="terminal-font text-sm" style={{ color: darkMode ? '#f4f8ff' : '#000' }}>{social.name}</span>
               </motion.a>
             ))}
           </div>
@@ -263,7 +266,7 @@ const JoinSection = () => {
    ██║  ██║╚██████╗╚██████╗███████╗
    ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚══════╝`}
             </pre>
-            <p className="terminal-font text-xs mt-4 text-gray-600">
+            <p className="terminal-font text-xs mt-4" style={{ color: darkMode ? '#cbd9ef' : '#4b5563' }}>
               Association de Statistique et d'Intelligence Artificielle
             </p>
           </div>
@@ -280,14 +283,14 @@ const JoinSection = () => {
 {`█████╗ ██████╗
 ╚════╝ ╚═════╝`}
             </pre>
-            <p className="terminal-font text-xs mt-2 text-gray-600">
+            <p className="terminal-font text-xs mt-2" style={{ color: darkMode ? '#cbd9ef' : '#4b5563' }}>
               © {new Date().getFullYear()} ASIA - All Rights Reserved
             </p>
           </div>
 
           {/* Version Info */}
           <div className="mt-6 md:mt-8 text-center">
-            <div className="terminal-font text-xs md:text-sm text-gray-600">
+            <div className="terminal-font text-xs md:text-sm" style={{ color: darkMode ? '#cbd9ef' : '#4b5563' }}>
               <span style={{ color: '#7c3aed' }}>VERSION:</span> 2.0
               <span className="mx-2 md:mx-4">|</span>
               <span style={{ color: '#06b6d4' }}>BUILD:</span> NEO_BRUTALIST

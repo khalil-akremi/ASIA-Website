@@ -2,7 +2,7 @@
 export const BOARD_MEMBERS = [
   { name: "Aziz Ameur", title: "President", image: "aziz.png" },
   { name: "Khalil Akremi", title: "Deputy President", image: "khalil.png" },
-  { name: "Imene Ben Saad", title: "General Secretary", image: "imene.png" },
+  { name: "Imen Ben Saad", title: "General Secretary", image: "imene.png" },
   { name: "Khadija Mejri", title: "Deputy Gen. Sec.", image: "khadija.png" },
   { name: "Zouhour Kahouli", title: "Treasurer", image: "zouhour.png" },
   { name: "Farah Bani", title: "Deputy Treasurer", image: "farah.png" },
@@ -17,32 +17,32 @@ export const BOARD_MEMBERS = [
 export const POLES = [
   {
     name: "Media",
-    mascot: "Gemini_Generated_Image_7wrcxb7wrcxb7wrc.png",
+    mascot: "Screenshot 2026-04-20 065134.png",
     description: "Creating compelling visual content and managing ASIA's digital presence."
   },
   {
     name: "Communication",
-    mascot: "Gemini_Generated_Image_u3whlxu3whlxu3wh.png",
+    mascot: "Screenshot 2026-04-20 065145.png",
     description: "Building bridges between ASIA and the community through strategic outreach."
   },
   {
     name: "Events",
-    mascot: "Gemini_Generated_Image_myrppwmyrppwmyrp.png",
+    mascot: "Screenshot 2026-04-20 065155.png",
     description: "Organizing workshops, seminars, and networking events for members."
   },
   {
     name: "Projects",
-    mascot: "Gemini_Generated_Image_fukforfukforfukf.png",
+    mascot: "Screenshot 2026-04-20 065214.png",
     description: "Leading innovative data science and AI projects with real-world impact."
   },
   {
     name: "Formation",
-    mascot: "Gemini_Generated_Image_t5vjrpt5vjrpt5vj.png",
+    mascot: "Screenshot 2026-04-20 065223.png",
     description: "Developing educational programs and skill-building workshops."
   },
   {
     name: "R&D",
-    mascot: "Gemini_Generated_Image_czqkstczqkstczqk.png",
+    mascot: "Screenshot 2026-04-20 065237.png",
     description: "Advancing research in statistics and artificial intelligence."
   },
 ];
@@ -61,6 +61,7 @@ export const SPREADSHEET_ROWS = 11;
 // Links
 export const JOIN_LINK = "https://docs.google.com/forms/d/18wBvc4TMcOx6eb0hi844FH80zJqFuzNASC0l0SLnKkc/edit";
 export const PROJECTS_LINK = "/project.html"; // RAG API Build Guide page
+export const EVENTS_SHEET_URL = ""; // Paste the published Google Sheets CSV or sheet URL here
 
 // Organization Stats
 export const STATS = {
@@ -70,13 +71,13 @@ export const STATS = {
 
 // Mascot Images (for random placement across site)
 export const MASCOT_IMAGES = [
-  "Gemini_Generated_Image_7wrcxb7wrcxb7wrc.png",
-  "Gemini_Generated_Image_u3whlxu3whlxu3wh.png",
-  "Gemini_Generated_Image_myrppwmyrppwmyrp.png",
-  "Gemini_Generated_Image_fukforfukforfukf.png",
-  "Gemini_Generated_Image_t5vjrpt5vjrpt5vj.png",
-  "Gemini_Generated_Image_czqkstczqkstczqk.png",
+  "Screenshot 2026-04-20 065134.png",
+  "Screenshot 2026-04-20 065145.png",
+  "Screenshot 2026-04-20 065155.png",
+  "Screenshot 2026-04-20 065214.png",
+  "Screenshot 2026-04-20 065223.png",
+  "Screenshot 2026-04-20 065237.png",
 ];
 
 // Central Mascot (Alpha) for "Meet Alpha" section
-export const CENTRAL_MASCOT = "Gemini_Generated_Image_gimffggimffggimf.png";
+export const CENTRAL_MASCOT = "Screenshot 2026-04-20 065249.png";

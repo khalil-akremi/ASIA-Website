@@ -332,6 +332,148 @@ body {
   color: #ffffff;
 }
 
+/* Dark Mode Support */
+.dark-mode {
+  --color-brutal-bg: #0a0a0f;
+  --color-brutal-text: #e5e7eb;
+  --color-brutal-card: #1a1a2e;
+  --color-brutal-border: #2d2d3a;
+}
+
+.dark-mode body {
+  background-color: #0a0a0f;
+  color: #e5eefb;
+}
+
+.dark-mode .dot-grid-bg {
+  background-color: #0a0a0f;
+  background-image: radial-gradient(circle, #7c3aed 1px, transparent 1px);
+  opacity: 0.15;
+}
+
+.dark-mode .bg-white {
+  background-color: #1a1a2e !important;
+  color: #e5eefb !important;
+}
+
+.dark-mode .bg-gray-50,
+.dark-mode .bg-gray-100,
+.dark-mode .bg-gray-200 {
+  background-color: #1a1a2e !important;
+}
+
+.dark-mode .bg-gray-800,
+.dark-mode .bg-gray-900,
+.dark-mode .bg-gray-950 {
+  background-color: #0f172a !important;
+}
+
+.dark-mode .text-black,
+.dark-mode .text-gray-900,
+.dark-mode .text-gray-800 {
+  color: #f4f8ff !important;
+}
+
+.dark-mode .text-gray-700 {
+  color: #d5e1f3 !important;
+}
+
+.dark-mode .text-gray-600 {
+  color: #b9c9e6 !important;
+}
+
+.dark-mode .text-gray-500 {
+  color: #96abd0 !important;
+}
+
+.dark-mode .text-gray-400 {
+  color: #7f96bc !important;
+}
+
+.dark-mode .text-gray-300 {
+  color: #dfe8f8 !important;
+}
+
+.dark-mode .border-black,
+.dark-mode .border-gray-200,
+.dark-mode .border-gray-300 {
+  border-color: rgba(255,255,255,0.22) !important;
+}
+
+.dark-mode .terminal-window,
+.dark-mode .polaroid {
+  background: #0f172a !important;
+  border-color: rgba(255,255,255,0.18) !important;
+}
+
+.dark-mode .gradient-text {
+  background: linear-gradient(135deg, #7dd3fc 0%, #c4b5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+  background: #1a1a2e;
+  border-left: 2px solid #7c3aed;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: #7c3aed;
+  border: 2px solid #000;
+}
+
+/* XP Bar Animation */
+@keyframes xp-fill {
+  from { width: 0%; }
+  to { width: var(--xp-width); }
+}
+
+.xp-bar-fill {
+  animation: xp-fill 1s ease-out forwards;
+}
+
+/* Achievement Unlock Animation */
+@keyframes achievement-pop {
+  0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+  50% { transform: scale(1.1) rotate(2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.achievement-unlock {
+  animation: achievement-pop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Pulse glow effect */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px currentColor; }
+  50% { box-shadow: 0 0 20px currentColor, 0 0 40px currentColor; }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Floating coins animation */
+@keyframes float-coin {
+  0%, 100% { transform: translateY(0) rotateY(0deg); }
+  50% { transform: translateY(-10px) rotateY(180deg); }
+}
+
+.float-coin {
+  animation: float-coin 3s ease-in-out infinite;
+}
+
+/* Streak flame animation */
+@keyframes flame {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.flame {
+  animation: flame 0.5s ease-in-out infinite;
+}
+
 /* Responsive Border Utilities */
 @media (max-width: 768px) {
   .border-3 {

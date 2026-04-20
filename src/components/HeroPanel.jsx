@@ -6,9 +6,8 @@ import { JOIN_LINK } from '../data/constants';
  * HeroPanel - Neo-Brutalist High-Tech Hero with CRT Aesthetics
  * Features Matrix-style ASCII rain background with enhanced ASCII logo
  */
-const HeroPanel = () => {
+const HeroPanel = ({ darkMode = false }) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [showCursor, setShowCursor] = useState(true);
   const matrixRef = useRef(null);
 
   // Words with strict color hierarchy: Violet=Action, Cyan=Data, Pink=Alert
@@ -28,14 +27,6 @@ const HeroPanel = () => {
       return () => clearTimeout(timer);
     }
   }, [currentWordIndex, words.length]);
-
-  // Cursor blink
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 530);
-    return () => clearInterval(interval);
-  }, []);
 
   // Matrix ASCII Rain Effect
   useEffect(() => {
@@ -77,91 +68,24 @@ const HeroPanel = () => {
   }, []);
 
   return (
-    <section className="min-h-screen relative overflow-hidden dot-grid-bg">
+    <section
+      className="min-h-screen relative overflow-hidden"
+      style={{
+        backgroundColor: darkMode ? '#0a0a0f' : '#f0f0f5',
+        backgroundImage: darkMode
+          ? 'radial-gradient(circle, #7c3aed 1px, transparent 1px)'
+          : 'radial-gradient(circle, #000 1px, transparent 1px)',
+        backgroundSize: '20px 20px',
+      }}
+    >
       {/* Matrix ASCII Rain Canvas */}
       <canvas
         ref={matrixRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ opacity: 0.5 }}
-      />
-
-      {/* CRT Scanline Overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none z-20"
-        style={{
-          background: 'repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0.03) 2px)',
-        }}
+        style={{ opacity: 1 }}
       />
 
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 pt-16 md:pt-20">
-        {/* ASCII Logo - Large with CRT Glow - Desktop */}
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-6 md:mb-10 hidden md:block"
-        >
-          <div className="relative">
-            {/* Glow Layer */}
-            <pre
-              className="absolute inset-0 font-mono text-lg md:text-xl lg:text-2xl select-none"
-              style={{
-                color: '#7c3aed',
-                textShadow: '0 0 20px rgba(124, 58, 237, 0.8), 0 0 40px rgba(124, 58, 237, 0.5), 0 0 60px rgba(124, 58, 237, 0.3)',
-                transform: 'translate(2px, 2px)',
-                opacity: 0.7,
-                letterSpacing: '0.15em',
-                lineHeight: '1.1',
-              }}
-            >
-{`    █████╗  ██████╗ ██████╗ ███████╗
-   ██╔══██╗██╔════╝██╔════╝ ██╔════╝
-   ███████║██║     ██║     █████╗
-   ██╔══██║██║     ██║     ██╔══╝
-   ██║  ██║╚██████╗╚██████╗███████╗
-   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚══════╝`}
-            </pre>
-            {/* Main ASCII */}
-            <pre
-              className="relative font-mono text-lg md:text-xl lg:text-2xl"
-              style={{
-                color: '#7c3aed',
-                textShadow: '0 0 10px rgba(124, 58, 237, 0.6), 0 0 20px rgba(124, 58, 237, 0.4)',
-                letterSpacing: '0.15em',
-                lineHeight: '1.1',
-              }}
-            >
-{`    █████╗  ██████╗ ██████╗ ███████╗
-   ██╔══██╗██╔════╝██╔════╝ ██╔════╝
-   ███████║██║     ██║     █████╗
-   ██╔══██║██║     ██║     ██╔══╝
-   ██║  ██║╚██████╗╚██████╗███████╗
-   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚══════╝`}
-            </pre>
-          </div>
-        </motion.div>
-
-        {/* ASCII Logo - Mobile */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="mb-4 md:hidden"
-        >
-          <pre
-            className="font-mono text-sm"
-            style={{
-              color: '#7c3aed',
-              textShadow: '0 0 10px rgba(124, 58, 237, 0.6)',
-              letterSpacing: '0.1em',
-            }}
-          >
-{`█████╗ ██████╗
-╚════╝ ╚═════╝`}
-          </pre>
-          <h1 className="pixel-font-lg text-3xl text-black mt-2">ASIA</h1>
-        </motion.div>
-
         {/* Main Hero Content */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -171,7 +95,10 @@ const HeroPanel = () => {
         >
           {/* "ASIA IS..." Header */}
           <div className="mb-2 md:mb-4">
-            <h1 className="pixel-font-lg text-4xl md:text-7xl lg:text-8xl text-black">
+            <h1
+              className="pixel-font-lg text-4xl md:text-7xl lg:text-8xl"
+              style={{ color: darkMode ? '#f8fafc' : '#000' }}
+            >
               ASIA IS...
             </h1>
           </div>
@@ -181,7 +108,8 @@ const HeroPanel = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="pixel-font text-xl md:text-3xl mb-3 md:mb-4 text-black"
+            className="pixel-font text-xl md:text-3xl mb-3 md:mb-4"
+            style={{ color: darkMode ? '#f8fafc' : '#000' }}
           >
             A PLACE TO
           </motion.p>
@@ -206,19 +134,6 @@ const HeroPanel = () => {
                 )}
               </AnimatePresence>
             ))}
-
-            {/* Typing Cursor */}
-            <span
-              className="text-black"
-              style={{
-                opacity: showCursor ? 1 : 0,
-                color: '#7c3aed',
-                marginLeft: '4px',
-                textShadow: '0 0 8px rgba(124, 58, 237, 0.6)',
-              }}
-            >
-              █
-            </span>
           </div>
         </motion.div>
 
@@ -237,7 +152,7 @@ const HeroPanel = () => {
                 <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-500 border border-black" />
                 <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500 border border-black" />
               </div>
-              <span className="terminal-font text-xs md:text-sm text-purple-400 ml-2 truncate">
+              <span className="terminal-font text-xs md:text-sm ml-2 truncate" style={{ color: darkMode ? '#c4b5fd' : '#c084fc' }}>
                 ~/asia/connect.exe
               </span>
             </div>
@@ -247,25 +162,35 @@ const HeroPanel = () => {
               <div className="space-y-3 md:space-y-4">
                 {/* Email Input */}
                 <div>
-                  <label className="terminal-font text-purple-400 text-xs md:text-sm block mb-1">
+                  <label className="terminal-font text-xs md:text-sm block mb-1" style={{ color: darkMode ? '#c4b5fd' : '#c084fc' }}>
                     {'>'} ENTER_EMAIL:
                   </label>
                   <input
                     type="email"
                     placeholder="your@email.com"
-                    className="w-full px-3 py-2 bg-black border-2 border-purple-500 text-white terminal-font text-sm focus:outline-none focus:border-purple-400"
+                    className="w-full px-3 py-2 border-2 terminal-font text-sm focus:outline-none"
+                    style={{
+                      background: darkMode ? '#0f172a' : '#000',
+                      borderColor: '#7c3aed',
+                      color: '#f8fafc',
+                    }}
                   />
                 </div>
 
                 {/* Password Input */}
                 <div>
-                  <label className="terminal-font text-purple-400 text-xs md:text-sm block mb-1">
+                  <label className="terminal-font text-xs md:text-sm block mb-1" style={{ color: darkMode ? '#c4b5fd' : '#c084fc' }}>
                     {'>'} ENTER_PASSWORD:
                   </label>
                   <input
                     type="password"
                     placeholder="********"
-                    className="w-full px-3 py-2 bg-black border-2 border-purple-500 text-white terminal-font text-sm focus:outline-none focus:border-purple-400"
+                    className="w-full px-3 py-2 border-2 terminal-font text-sm focus:outline-none"
+                    style={{
+                      background: darkMode ? '#0f172a' : '#000',
+                      borderColor: '#7c3aed',
+                      color: '#f8fafc',
+                    }}
                   />
                 </div>
 
@@ -282,7 +207,7 @@ const HeroPanel = () => {
                 </motion.a>
 
                 {/* Status Line */}
-                <div className="terminal-font text-xs text-gray-500">
+                <div className="terminal-font text-xs" style={{ color: darkMode ? '#cbd5e1' : '#6b7280' }}>
                   <span className="text-cyan-500">●</span> STATUS: READY_TO_CONNECT_
                 </div>
               </div>
@@ -297,7 +222,7 @@ const HeroPanel = () => {
           transition={{ delay: 2 }}
           className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2"
         >
-          <div className="terminal-font text-xs md:text-sm text-black flex flex-col items-center">
+          <div className="terminal-font text-xs md:text-sm flex flex-col items-center" style={{ color: darkMode ? '#f8fafc' : '#000' }}>
             <span>SCROLL_DOWN</span>
             <motion.div
               animate={{ y: [0, 5, 0] }}
