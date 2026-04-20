@@ -161,7 +161,7 @@ const JoinSection = ({ darkMode = false }) => {
           className="text-center mb-12 md:mb-16"
         >
           <a
-            href={PROJECTS_LINK}
+            href={JOIN_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block"
@@ -175,7 +175,7 @@ const JoinSection = ({ darkMode = false }) => {
               }}
             >
               <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base">
-                {'>'} CHECK_PROJECTS
+                {'>'} JOIN_THE_FAMILY
                 <ArrowRight size={18} />
               </span>
             </motion.button>

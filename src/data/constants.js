@@ -59,7 +59,7 @@ export const SOCIALS = {
 export const SPREADSHEET_ROWS = 11;
 
 // Links
-export const JOIN_LINK = "https://docs.google.com/forms/d/18wBvc4TMcOx6eb0hi844FH80zJqFuzNASC0l0SLnKkc/edit";
+export const JOIN_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSeCPfY8CKn2BI-zHNoD-ekg6tx_Fo0KuZTfjoqUH4bEPO4aag/viewform";
 export const PROJECTS_LINK = "/project.html"; // RAG API Build Guide page
 export const EVENTS_SHEET_URL = ""; // Paste the published Google Sheets CSV or sheet URL here
 
