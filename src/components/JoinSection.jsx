@@ -46,13 +46,13 @@ const JoinSection = ({ darkMode = false }) => {
           className="text-center mb-10 md:mb-12"
         >
           <div className="flex items-center justify-center gap-2 mb-2">
-            <span className="terminal-font text-xs" style={{ color: darkMode ? '#a7b9d6' : '#6b7280' }}>JOIN://</span>
-            <h2 className="pixel-font-lg text-3xl md:text-5xl" style={{ color: darkMode ? '#f4f8ff' : '#000' }}>THE_FAMILY</h2>
+            <span className="terminal-font text-xs" style={{ color: darkMode ? '#a7b9d6' : '#6b7280' }}>EXPLORE://</span>
+            <h2 className="pixel-font-lg text-3xl md:text-5xl" style={{ color: darkMode ? '#f4f8ff' : '#000' }}>PROJECTS</h2>
           </div>
           <div className="terminal-font text-sm" style={{ color: darkMode ? '#cbd9ef' : '#4b5563' }}>
-            <span style={{ color: '#db2777' }}>●</span> BECOME_PART_OF_THE_COMMUNITY
+            <span style={{ color: '#db2777' }}>●</span> DISCOVER_OUR_WORK
             <span className="mx-2" style={{ color: '#06b6d4' }}>|</span>
-            LEARN · GROW · BUILD
+            BUILD · INNOVATE · DELIVER
           </div>
         </motion.div>
 
@@ -161,9 +161,7 @@ const JoinSection = ({ darkMode = false }) => {
           className="text-center mb-12 md:mb-16"
         >
           <a
-            href={JOIN_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={PROJECTS_LINK}
             className="inline-block"
           >
             <motion.button
@@ -175,7 +173,7 @@ const JoinSection = ({ darkMode = false }) => {
               }}
             >
               <span className="flex items-center gap-2 md:gap-3 text-sm md:text-base">
-                {'>'} JOIN_THE_FAMILY
+                {'>'} CHECK_PROJECTS
                 <ArrowRight size={18} />
               </span>
             </motion.button>
