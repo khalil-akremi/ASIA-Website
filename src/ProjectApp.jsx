@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Terminal, Clock, Target, Database, Cpu, CheckCircle2,
-  Code2, Layers, Zap, Home, FolderGit2, Moon, Sun, Trophy,
+  Code2, Layers, Zap, Home, Moon, Sun, Trophy,
   Star, Flame, Gem, Shield, Award, Play, Check, AlertCircle,
   Copy, ChevronRight, ChevronDown, Lock, Unlock, Sparkles,
   RotateCcw, ArrowRight
@@ -688,10 +688,6 @@ const ProjectApp = () => {
                     <p className="mt-6 text-center terminal-font text-sm text-gray-600 dark:text-gray-400 max-w-xs">
                       Build a Retrieval-Augmented Generation API that lets ASIA answer questions from your knowledge base.
                     </p>
-                    <a href="https://github.com/khalil-akremi/asia-rag-brain" target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-2 px-4 py-2 brutal-btn bg-gray-800 text-white">
-                      <FolderGit2 size={16} />
-                      <span className="terminal-font text-xs">khalil-akremi/asia-rag-brain</span>
-                    </a>
                   </div>
 
                   <div className="flex-1">
